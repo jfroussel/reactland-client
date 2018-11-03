@@ -3,6 +3,7 @@ import { Field, reduxForm } from "redux-form"
 import * as actions from "../actions"
 import { connect } from "react-redux"
 import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
 
 
 const FIELDS = { email: "email", password: "password" }
@@ -19,7 +20,7 @@ class Signin extends Component {
 
             <div className="App">
                 <header className="App-header">
-                    <h1 className="font-weight-light pb-5">Connexion</h1>
+                    <h1 className="font-weight-light pb-5">Login</h1>
 
 
                     <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
@@ -48,9 +49,10 @@ class Signin extends Component {
                                 />
                             </fieldset>
                         </div>
-                        <div className="justify-content-md-center">
+                        <div className="justify-content-md-center pb-5">
                             <button type="submit" className="btn btn-lg btn-primary btn-raised">Connexion</button>
                         </div>
+                        <p>Not register ! <Link to="/signup">create account now !</Link></p>
                     </form>
                 </header>
             </div>

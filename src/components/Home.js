@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-//import Signin from './Signin'
 
 class Home extends Component {
   render() {

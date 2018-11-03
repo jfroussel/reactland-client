@@ -23,6 +23,14 @@ export function signinUser({ email, password }, history) {
     }
 }
 
+export function signout(history) {
+    return function(dispatch) {
+        dispatch(setAuthentification(false))
+        history.push("/dashboard")
+        localStorage.removeItem("token")
+    }
+}
+
 export function setAuthentification(isLoggedIn) {
     return {
         type: SET_AUTHENTIFICATION,

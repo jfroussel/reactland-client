@@ -7,14 +7,26 @@ import * as actions from '../actions'
 
 class Header extends Component {
 
-
-    authentificationLabel = () => {
+    renderAuthLink = () => {
         if (this.props.isLoggedIn) {
-            return "Deconnexion"
+            return (
+                <li className="nav-item">
+                    <Link className="btn btn-dark btn-raised" to="/signout">
+                        Logout
+                    </Link>
+                </li>
+            )
+        } else {
+            return (
+                <li className="nav-item">
+                    <Link className="btn btn-dark btn-raised" to="/signin">
+                        Login
+                    </Link>
+                </li>
+            )
         }
-        return "Connexion"
-
     }
+
 
     render() {
         console.log('RENDER', this.props)
@@ -26,8 +38,11 @@ class Header extends Component {
                     </Link>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ml-auto">
-                            <li className="nav-item active">
-                                <Link className="nav-link" to="/catalog">Catalog <span className="sr-only">(current)</span></Link>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/dashboard">Dashboard</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/catalog">Catalog</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/sales">Sales</Link>
@@ -37,11 +52,7 @@ class Header extends Component {
                             </li>
                         </ul>
                         <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <Link className="btn btn-info btn-raised" to="/signin">
-                                    {this.authentificationLabel()}
-                                </Link>
-                            </li>
+                            {this.renderAuthLink()}
                         </ul>
                     </div>
                 </nav>
