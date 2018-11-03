@@ -25,7 +25,7 @@ class Header extends Component {
                         <img src={Logo} width="170" className="d-inline-block align-top" alt="" />
                     </Link>
                     <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav">
+                        <ul className="navbar-nav ml-auto">
                             <li className="nav-item active">
                                 <Link className="nav-link" to="/catalog">Catalog <span className="sr-only">(current)</span></Link>
                             </li>
@@ -38,7 +38,7 @@ class Header extends Component {
                         </ul>
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
-                                <Link className="btn btn-dark btn-raised" to="/signin">
+                                <Link className="btn btn-info btn-raised" to="/signin">
                                     {this.authentificationLabel()}
                                 </Link>
                             </li>
