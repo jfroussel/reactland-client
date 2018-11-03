@@ -14,44 +14,52 @@ class Signin extends Component {
     }
 
     render() {
-        console.log('PROPS', this.props)
+
         return (
-            <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
-                <div className="justify-content-md-center pb-3">
-                   
-                </div>
-                <div className="justify-content-mdr-center">
-                    <fieldset className="col-md-12 form-group">
-                        <label className="bmd-label-floating">Email</label>
-                        <Field
-                            name={FIELDS.email}
-                            component="input"
-                            type="text"
-                            className="form-control"
-                        />
-                    </fieldset>
-                </div>
-                <div className="justify-content-md-center pb-5">
-                    <fieldset className="col-md-12 form-group">
-                        <label className="bmd-label-floating">Password</label>
-                        <Field
-                            name={FIELDS.password}
-                            component="input"
-                            type="password"
-                            className="form-control"
-                        />
-                    </fieldset>
-                </div>
-                <div className="justify-content-md-center">
-                    <button type="submit" className="btn btn-lg btn-primary btn-raised">Connexion</button>
-                </div>
-            </form>
+
+            <div className="App">
+                <header className="App-header">
+                    <h1 className="font-weight-light pb-5">Connexion</h1>
+
+
+                    <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
+                        <div className="justify-content-md-center pb-3">
+
+                        </div>
+                        <div className="justify-content-mdr-center">
+                            <fieldset className="col-md-12 form-group">
+                                <label className="bmd-label-floating">Email</label>
+                                <Field
+                                    name={FIELDS.email}
+                                    component="input"
+                                    type="text"
+                                    className="form-control"
+                                />
+                            </fieldset>
+                        </div>
+                        <div className="justify-content-md-center pb-5">
+                            <fieldset className="col-md-12 form-group">
+                                <label className="bmd-label-floating">Password</label>
+                                <Field
+                                    name={FIELDS.password}
+                                    component="input"
+                                    type="password"
+                                    className="form-control"
+                                />
+                            </fieldset>
+                        </div>
+                        <div className="justify-content-md-center">
+                            <button type="submit" className="btn btn-lg btn-primary btn-raised">Connexion</button>
+                        </div>
+                    </form>
+                </header>
+            </div>
         )
     }
 }
 
 const signinForm = reduxForm({
-    form:"Signin",
+    form: "Signin",
     fields: Object.keys(FIELDS)
 })(Signin)
 

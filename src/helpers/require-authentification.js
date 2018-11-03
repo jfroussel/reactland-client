@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 
 export default function(ChildComponent) {
     class requireAuthentification extends Component {
@@ -7,14 +8,14 @@ export default function(ChildComponent) {
         componentWillMount() {
             if(!this.props.isLoggedIn) {
                 console.log('Are you connected yet ? ', this.props.isLoggedIn)
-                // this.props.history.push("/")
+                this.props.history.push("/")
             }
         }
 
         componentWillUpdate(nextProps) {
             if(!nextProps.isLoggedIn) {
                 console.log('Are you connected yet ? ', nextProps.isLoggedIn)
-                // this.props.history.push("/")
+                this.props.history.push("/")
             }
         }
         
@@ -28,7 +29,7 @@ export default function(ChildComponent) {
             isLoggedIn: state.authentification.isLoggedIn
         }
     }
-    return connect(mapStateToProps)(requireAuthentification)
+    return withRouter(connect(mapStateToProps)(requireAuthentification)) 
 }
 
 

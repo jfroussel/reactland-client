@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Signin from './Signin'
+//import Signin from './Signin'
 
 class Home extends Component {
   render() {
@@ -9,7 +9,7 @@ class Home extends Component {
         <header className="App-header">
           <h1 className="font-weight-light pb-5">Welcome to reactsound-composers</h1>
          <div>
-            <Signin />
+           
           </div>
         </header>
       </div>
