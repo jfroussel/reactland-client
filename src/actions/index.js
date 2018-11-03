@@ -23,6 +23,23 @@ export function signinUser({ email, password }, history) {
     }
 }
 
+export function signupUser({ email, password }, history) {
+    console.log('action',history)
+    return function (dispatch) {
+        axios.post(`${BASE_URL}/signup`, {
+            email,
+            password
+        }).then((response) => {
+           
+            localStorage.setItem("token", response.data.token)
+            dispatch(setAuthentification(true))
+            history.push("/dashboard")
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+}
+
 export function signout(history) {
     return function(dispatch) {
         dispatch(setAuthentification(false))

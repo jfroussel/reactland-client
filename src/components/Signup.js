@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import * as validations from '../validations'
+
 const style = {
     error: {
         color: '#dc3545'
@@ -16,7 +17,7 @@ const FIELDS = { email: "email", password: "password", confirmPassword: "confirm
 class Signup extends Component {
 
     handleSubmit = (credentials) => {
-        this.props.signinUser(credentials, this.props.history)
+        this.props.signupUser(credentials, this.props.history)
     }
 
     renderInputComponent = (field) => {
@@ -38,32 +39,25 @@ class Signup extends Component {
             <div className="App">
                 <header className="App-header">
                     <h1 className="font-weight-light pb-5">Register</h1>
-
-
                     <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
-
-
                         <Field
                             name={FIELDS.email}
                             component={this.renderInputComponent}
                             type="text"
                             label="email"
                         />
-
                         <Field
                             name={FIELDS.password}
                             component={this.renderInputComponent}
                             type="password"
                             label="password"
                         />
-
                         <Field
                             name={FIELDS.confirmPassword}
                             component={this.renderInputComponent}
                             type="password"
                             label="confirm password"
                         />
-
                         <div className="justify-content-md-center pt-5 pb-5">
                             <button type="submit" className="btn btn-lg btn-primary btn-raised">Connexion</button>
                         </div>
