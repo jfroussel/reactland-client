@@ -1,2 +1,1 @@
-export const SIGNIN = 'SIGNIN'
 export const SET_AUTHENTIFICATION = 'SET_AUTHENTIFICATION'

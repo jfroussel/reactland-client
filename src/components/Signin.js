@@ -2,16 +2,19 @@ import React, { Component } from "react"
 import { Field, reduxForm } from "redux-form"
 import * as actions from "../actions"
 import { connect } from "react-redux"
+import { withRouter } from 'react-router'
+
 
 const FIELDS = { email: "email", password: "password" }
 
 class Signin extends Component {
 
     handleSubmit = (credentials) => {
-        this.props.handleSubmit(credentials, this.props.history)
+        this.props.signinUser(credentials, this.props.history)
     }
 
     render() {
+        console.log('PROPS', this.props)
         return (
             <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
                 <div className="justify-content-md-center pb-3">
@@ -47,10 +50,10 @@ class Signin extends Component {
     }
 }
 
-const SigninForm = reduxForm({
+const signinForm = reduxForm({
     form:"Signin",
     fields: Object.keys(FIELDS)
 })(Signin)
 
 
-export default connect(null, actions)(SigninForm)
+export default withRouter(connect(null, actions)(signinForm)) 
