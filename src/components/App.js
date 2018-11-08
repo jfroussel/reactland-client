@@ -11,6 +11,7 @@ import Navbar from './Header'
 import Signin from './Signin'
 import Signout from './Signout'
 import Signup from './Signup'
+import Account from './Account'
 
 
 
@@ -33,6 +34,7 @@ const App = () => (
             <Route exact path='/catalog' component={RequireAuthentification(Catalog)} />
             <Route exact path='/sales' component={RequireAuthentification(Sales)} />
             <Route exact path='/statistics' component={RequireAuthentification(Statistics)} />
+            <Route exact path='/account' component={RequireAuthentification(Account)} />
         </div>
     </Router>
 );

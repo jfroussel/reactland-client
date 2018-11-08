@@ -10,6 +10,7 @@ const style = {
 }
 class Dashboard extends Component {
     render() {
+        
         return (
             <div style={style.container}>
                 <header className="App-header">
@@ -18,6 +19,12 @@ class Dashboard extends Component {
             </div>
         );
     }
+
+    
+    componentWillMount() {
+        console.log('dashboard props', this.props)
+    }
+    
 }
 
 export default Dashboard;

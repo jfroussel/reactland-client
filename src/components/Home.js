@@ -7,9 +7,6 @@ class Home extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="font-weight-light pb-5">Welcome to reactsound-composers</h1>
-         <div>
-           
-          </div>
         </header>
       </div>
     );

@@ -29,7 +29,6 @@ class Header extends Component {
 
 
     render() {
-        console.log('RENDER', this.props)
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -49,6 +48,9 @@ class Header extends Component {
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/statistics">Statistics</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/account">Account</Link>
                             </li>
                         </ul>
                         <ul className="navbar-nav ml-auto">
