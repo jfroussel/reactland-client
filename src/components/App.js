@@ -31,7 +31,7 @@ const App = () => (
             <Route exact path='/signout' component={Signout} />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/dashboard' component={RequireAuthentification(Dashboard)} />
-            <Route exact path='/catalog' component={RequireAuthentification(Catalog)} />
+            <Route exact path='/catalog' component={Catalog} />
             <Route exact path='/sales' component={RequireAuthentification(Sales)} />
             <Route exact path='/statistics' component={RequireAuthentification(Statistics)} />
             <Route exact path='/accounts' component={RequireAuthentification(Account)} />
