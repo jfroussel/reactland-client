@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import * as actions from '../actions'
+import { bindActionCreators } from 'redux'
+import { getAccounts } from '../actions/accounts'
 const style = {
     container: {
         backgroundColor: '#282c34',
@@ -11,15 +12,24 @@ class Account extends Component {
 
     
     componentWillMount() {
-       console.log('Account CWM', this.props)
+      this.props.getAccounts()
 
     }
     
     render() {
+        const { accounts } = this.props
+        
         return (
             <div style={style.container}>
                 <header className="App-header">
                     <h1 className="font-weight-light pb-5">Account page</h1>
+                    <p className="text-success">
+                        <ul>
+                            {
+                                JSON.stringify(accounts)
+                            }
+                        </ul>
+                    </p>
                 </header>
             </div>
         );
@@ -29,9 +39,13 @@ class Account extends Component {
 const mapStateToProps = state => ({
 
     isLoggedIn: state.authentification.isLoggedIn,
-    account: state.account
+    accounts: state.accounts
 
 })
 
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ getAccounts }, dispatch)
+}
 
-export default connect(mapStateToProps, actions)(Account)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Account)

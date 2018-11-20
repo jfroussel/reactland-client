@@ -7,7 +7,7 @@ import AccountReducer from "./account"
 const rootReducer = combineReducers({
     form,
     authentification: AuthentificationReducer,
-    account: AccountReducer
+    accounts: AccountReducer
   
 })
 

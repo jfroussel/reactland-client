@@ -1,12 +1,9 @@
-import { ACCOUNT } from '../actions/action-types'
+import { GET_ACCOUNTS} from '../actions/action-types'
 
-const initialState = {
-    account: false
-}
 
-export default function AccountReducer(state = initialState, action) {
+export default function AccountReducer(state = [], action) {
     switch (action.type) {
-        case ACCOUNT :
+        case GET_ACCOUNTS :
             return {
                 account: action.payload
             }

@@ -1,12 +1,12 @@
 import {
     SET_AUTHENTIFICATION,
-    ACCOUNT
+    GET_ACCOUNTS
 
 } from "./action-types"
 import axios from 'axios'
 
 //const BASE_URL = "http://localhost:3090"
-const BASE_URL = "http://localhost:27017"
+const BASE_URL = "http://localhost:3050"
 
 export function signinUser({ email, password }, history) {
     console.log('action', history)
@@ -27,9 +27,9 @@ export function signinUser({ email, password }, history) {
 
 export function account() {
     return function(dispatch) {
-        axios.get(`${BASE_URL}/account`)
+        axios.get(`${BASE_URL}/users`)
         .then((response) => {
-            dispatch(ACCOUNT, response.data)
+            dispatch({type:GET_ACCOUNTS, payload: response.data})
         }).catch((error) => {
             console.log('Account', error)
         })

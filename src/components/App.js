@@ -34,7 +34,7 @@ const App = () => (
             <Route exact path='/catalog' component={RequireAuthentification(Catalog)} />
             <Route exact path='/sales' component={RequireAuthentification(Sales)} />
             <Route exact path='/statistics' component={RequireAuthentification(Statistics)} />
-            <Route exact path='/account' component={RequireAuthentification(Account)} />
+            <Route exact path='/accounts' component={RequireAuthentification(Account)} />
         </div>
     </Router>
 );

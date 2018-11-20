@@ -50,7 +50,7 @@ class Header extends Component {
                                 <Link className="nav-link" to="/statistics">Statistics</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/account">Account</Link>
+                                <Link className="nav-link" to="/accounts">Account</Link>
                             </li>
                         </ul>
                         <ul className="navbar-nav ml-auto">
