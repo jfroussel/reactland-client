@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import { Field, reduxForm } from "redux-form"
-import * as actions from "../actions"
+import { signinUser } from "../actions/auth"
 import { connect } from "react-redux"
+import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import * as validations from '../validations'
@@ -76,5 +77,15 @@ const signinForm = reduxForm({
     validate
 })(Signin)
 
+const mapStateToProps = (state) => {
+    return {
+        auth: state.authentification
+    };
+}
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ signinUser }, dispatch)
 
-export default withRouter(connect(null, actions)(signinForm)) 
+}
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(signinForm)) 

@@ -1,11 +1,9 @@
 import {
     SET_AUTHENTIFICATION,
-    GET_ACCOUNTS
+    USER_INFO
 
 } from "./action-types"
 import axios from 'axios'
-
-//const BASE_URL = "http://localhost:3090"
 const BASE_URL = "http://localhost:3050"
 
 export function signinUser({ email, password }, history) {
@@ -18,25 +16,13 @@ export function signinUser({ email, password }, history) {
 
             localStorage.setItem("token", response.data.token)
             dispatch(setAuthentification(true))
+            dispatch(userInfo(response.data.info))
             history.push("/dashboard")
         }).catch((error) => {
             console.log(error)
         })
     }
 }
-
-export function account() {
-    return function(dispatch) {
-        axios.get(`${BASE_URL}/users`)
-        .then((response) => {
-            dispatch({type:GET_ACCOUNTS, payload: response.data})
-        }).catch((error) => {
-            console.log('Account', error)
-        })
-    }
-}
-
-
 
 export function signupUser({ email, password, username }, history) {
     console.log('action', history)
@@ -46,9 +32,9 @@ export function signupUser({ email, password, username }, history) {
             password,
             username
         }).then((response) => {
-
             localStorage.setItem("token", response.data.token)
             dispatch(setAuthentification(true))
+            dispatch(userInfo(response.data.info))
             history.push("/dashboard")
         }).catch((error) => {
             console.log(error)
@@ -59,6 +45,7 @@ export function signupUser({ email, password, username }, history) {
 export function signout(history) {
     return function (dispatch) {
         dispatch(setAuthentification(false))
+        dispatch(userInfo(null))
         history.push("/dashboard")
         localStorage.removeItem("token")
     }
@@ -68,5 +55,12 @@ export function setAuthentification(isLoggedIn) {
     return {
         type: SET_AUTHENTIFICATION,
         payload: isLoggedIn
+    }
+}
+
+export function userInfo(info) {
+    return {
+        type: USER_INFO,
+        payload: info
     }
 }

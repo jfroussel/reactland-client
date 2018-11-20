@@ -23,13 +23,13 @@ class Account extends Component {
             <div style={style.container}>
                 <header className="App-header">
                     <h1 className="font-weight-light pb-5">Account page</h1>
-                    <p className="text-success">
+                    <div className="text-success">
                         <ul>
                             {
                                 JSON.stringify(accounts)
                             }
                         </ul>
-                    </p>
+                    </div>
                 </header>
             </div>
         );

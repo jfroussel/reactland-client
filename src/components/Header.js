@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Logo from '../assets/logo.png'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import * as actions from '../actions'
+import { bindActionCreators } from 'redux'
+import { userInfo, setAuthentification} from '../actions/auth'
 
 
 class Header extends Component {
@@ -29,6 +30,10 @@ class Header extends Component {
 
 
     render() {
+
+        const { info, isLoggedIn } = this.props
+
+        console.log('INFO : ', info)
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -54,6 +59,13 @@ class Header extends Component {
                             </li>
                         </ul>
                         <ul className="navbar-nav ml-auto">
+                            <span className="navbar-text text-dark">
+                                {
+                                  isLoggedIn && info ? `You are now logged  :  ${info.email}   ` : null
+                                }
+                            </span>
+                        </ul>
+                        <ul className="navbar-nav ml-auto">
                             {this.renderAuthLink()}
                         </ul>
                     </div>
@@ -65,9 +77,15 @@ class Header extends Component {
 
 const mapStateToProps = state => ({
 
-    isLoggedIn: state.authentification.isLoggedIn
+    isLoggedIn: state.authentification.isLoggedIn,
+    info: state.userInfo.info
 
 })
 
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ setAuthentification, userInfo }, dispatch)
 
-export default connect(mapStateToProps, actions)(Header)
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

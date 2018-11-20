@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import * as actions from '../actions'
+import { bindActionCreators } from 'redux'
+import { signout} from '../actions/auth'
 import { withRouter } from 'react-router'
 
 class Signout extends Component {
@@ -20,7 +21,15 @@ class Signout extends Component {
         );
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        auth: state.authentification
+    };
+}
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ signout }, dispatch)
+
+}
 
 
-
-export default withRouter(connect(null, actions)(Signout)) 
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signout)) 
