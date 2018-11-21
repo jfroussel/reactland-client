@@ -4,6 +4,7 @@ import AuthentificationReducer from "./authentification";
 import AccountReducer from "./account"
 import UserInfo from './userInfoReducer'
 import CatalogList from "./catalog"
+import AddSound from "./catalog"
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
     authentification: AuthentificationReducer,
     accounts: AccountReducer,
     userInfo: UserInfo,
-    catalogList : CatalogList
+    catalogList : CatalogList,
+    addsound: AddSound
   
 })
 

@@ -4,7 +4,7 @@ const BASE_URL = "http://localhost:3050"
 
 export function getCatalogList() {
     return function (dispatch) {
-        axios.get(`${BASE_URL}/catalog`).then((response) => {
+        axios.get(`${BASE_URL}/sounds`).then((response) => {
             dispatch({type: CATALOG_LIST, payload:response.data})
         }).catch((error) => {
             console.log(error)

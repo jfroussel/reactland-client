@@ -30,3 +30,10 @@
     transform: rotate(360deg);
   }
 }
+
+.ReactTable .rt-thead .rt-tr {
+  text-align: left !important;
+  padding: 10px;
+  color: #17a2b8;
+}
+

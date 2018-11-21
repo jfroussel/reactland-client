@@ -7,7 +7,6 @@ import axios from 'axios'
 const BASE_URL = "http://localhost:3050"
 
 export function signinUser({ email, password }, history) {
-    console.log('action', history)
     return function (dispatch) {
         axios.post(`${BASE_URL}/signin`, {
             email,

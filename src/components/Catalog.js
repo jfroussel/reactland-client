@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { getCatalogList } from '../actions/catalog'
 import ReactTable from "react-table"
 import "react-table/react-table.css"
+import { Link } from 'react-router-dom'
 
 const style = {
     container: {
@@ -72,7 +73,7 @@ class Catalog extends Component {
                                     },
                                     {
                                         Header: "Tone",
-                                        accessor: "tone.label",
+                                        accessor: "tone",
         
                                     },
                                     {
@@ -111,15 +112,17 @@ class Catalog extends Component {
                         sortable={true}
                         noDataText="No data found !"
                         className="-striped -highlight"
+                        
                     />
                 </div>
             </div>
         )
         return (
             <div className="container-fluid pt-5" style={style.container}>
-                <p className="text-center text-white">
-                    <h1 className="font-weight-light pb-5">Catalog page</h1>
-                </p>
+                <div className="text-center text-white">
+                    <h1 className="font-weight-light pb-5">Sounds catalog</h1>
+                </div>
+                <p><Link type="button" className="btn btn-sm btn-dark" to="/add-new-sound">Add New sound</Link></p>
                 <div className="text-white">
                     <SoundList />
                 </div>
