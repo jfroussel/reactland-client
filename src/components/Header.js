@@ -36,7 +36,7 @@ class Header extends Component {
         console.log('INFO : ', info)
         return (
             <div>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
                     <Link className="navbar-brand" to="/">
                         <img src={Logo} width="170" className="d-inline-block align-top" alt="" />
                     </Link>

@@ -55,7 +55,7 @@ class Sound extends Component {
         return (
             <div className="container-fluid pt-5" style={style.container}>
                 <div className="text-center text-white">
-                    <h1 className="font-weight-light pb-5">Add new sound <br /> into your catalog</h1>
+                    <h1 className="font-weight-light pt-5 pb-5">Add new sound <br /> into your catalog</h1>
                 </div>
                 <p><Link type="button" className="btn btn-sm btn-dark" to="/catalog">Return catalog page</Link></p>
                 <div className=" container text-white">

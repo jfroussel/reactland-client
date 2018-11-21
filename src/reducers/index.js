@@ -4,7 +4,7 @@ import AuthentificationReducer from "./authentification";
 import AccountReducer from "./account"
 import UserInfo from './userInfoReducer'
 import CatalogList from "./catalog"
-import AddSound from "./catalog"
+import AddSound from "./sound"
 
 
 const rootReducer = combineReducers({
