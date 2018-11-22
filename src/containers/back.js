@@ -93,7 +93,7 @@ class Sound extends Component {
                 <label className="bmd-label-floating">{field.label}</label>
                 <Select
                     name="toto"
-                    options={field.options}
+                    options={field.data}
                     components={makeAnimated()}
                     isMulti
                     closeMenuOnSelect={false}
@@ -162,7 +162,7 @@ class Sound extends Component {
                                 <Field
                                     name={FIELDS.genres}
                                     component={this.renderReactSelect}
-                                    options={Genres}
+                                    data={Genres}
                                     label="genres"
                                     type="text"
 
@@ -170,7 +170,7 @@ class Sound extends Component {
                                 <Field
                                     name={FIELDS.moods}
                                     component={this.renderReactSelect}
-                                    options={Moods}
+                                    data={Moods}
                                     label="moods"
                                     type="text"
                                 />
@@ -189,7 +189,7 @@ class Sound extends Component {
                                 <Field
                                     name={FIELDS.instruments}
                                     component={this.renderReactSelect}
-                                    options={Instruments}
+                                    data={Instruments}
                                     label="instruments"
                                     type="text"
                                 />

@@ -19,7 +19,7 @@ import AddSound from '../containers/AddSound'
 
 const style = {
     container: {
-        backgroundColor: '#282c34',
+        backgroundColor: '#fff',
         minHeight: '100vh'
     }
 }

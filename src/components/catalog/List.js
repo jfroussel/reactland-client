@@ -4,7 +4,7 @@ import "react-table/react-table.css"
 const style = {
     header: {
         textAlign: 'left',
-        color: '#ffffff',
+        color: '#000',
         backgroundColor: '#000'
     }
 }
