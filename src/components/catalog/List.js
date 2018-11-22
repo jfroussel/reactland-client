@@ -1,48 +1,20 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { getCatalogList } from '../actions/catalog'
+import React, { Component } from 'react';
 import ReactTable from "react-table"
 import "react-table/react-table.css"
-import { Link } from 'react-router-dom'
-
 const style = {
-    container: {
-        backgroundColor: '#282c34',
-        minHeight: '100vh',
-        
-    },
     header: {
         textAlign: 'left',
         color: '#ffffff',
         backgroundColor: '#000'
     }
 }
-class Catalog extends Component {
 
-    componentWillMount() {
-        this.props.getCatalogList()
-    }
-
-    getList = () => {
+class SoundList extends Component {
+    render() {
+        const { list } = this.props
         return (
             <div>
-                <li>toto</li>
-                <li>tata</li>
-            </div>
-
-        )
-
-    }
-
-    render() {
-        const { catalog } = this.props
-        const list = Object.values(catalog)
-        console.log('list :', list)
-        const SoundList = () => (
-            <div className="pt-0">
-                <div>
-                    <ReactTable
+                <ReactTable
                         data={list[0]}
                         columns={[
                             
@@ -114,28 +86,9 @@ class Catalog extends Component {
                         className="-striped -highlight"
                         
                     />
-                </div>
-            </div>
-        )
-        return (
-            <div className="container-fluid pt-5" style={style.container}>
-                <div className="text-center text-white">
-                    <h1 className="font-weight-light pt-5 pb-5">Sounds catalog</h1>
-                </div>
-                <p><Link type="button" className="btn btn-sm btn-dark" to="/add-new-sound">Add New sound</Link></p>
-                <div className="text-white">
-                    <SoundList />
-                </div>
             </div>
         );
     }
 }
-const mapStateToProps = state => ({
-    catalog: state.catalogList
-})
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getCatalogList }, dispatch)
 
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Catalog)
-
+export default SoundList;

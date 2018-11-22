@@ -1,0 +1,44 @@
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { getCatalogList } from '../actions/catalog'
+import { Link } from 'react-router-dom'
+import CatalogList from "../components/catalog/List"
+const style = {
+    container: {
+        backgroundColor: '#282c34',
+        minHeight: '100vh',
+        
+    }
+}
+
+class Catalog extends Component {
+
+    componentWillMount() {
+        this.props.getCatalogList()
+    }
+
+    render() {
+        const { catalog } = this.props
+        return (
+            <div className="container-fluid pt-5" style={style.container}>
+                <div className="text-center text-white">
+                    <h1 className="font-weight-light pt-5 pb-5">Sounds catalog</h1>
+                </div>
+                <p><Link type="button" className="btn btn-sm btn-dark" to="/add-new-sound">Add New sound</Link></p>
+                <div className="text-white">
+                    <CatalogList  list={Object.values(catalog)}/>
+                </div>
+            </div>
+        );
+    }
+}
+const mapStateToProps = state => ({
+    catalog: state.catalogList
+})
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ getCatalogList }, dispatch)
+
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Catalog)
+

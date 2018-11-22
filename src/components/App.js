@@ -3,7 +3,7 @@ import './App.css'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './Home'
 import Dashboard from './Dashboard'
-import Catalog from './Catalog'
+import Catalog from '../containers/Catalog'
 import Sales from './Sales'
 import Statistics from './Statistics'
 import RequireAuthentification from '../helpers/require-authentification'
@@ -12,7 +12,8 @@ import Signin from './Signin'
 import Signout from './Signout'
 import Signup from './Signup'
 import Account from './Account'
-import AddSound from './AddSound'
+import AddSound from '../containers/AddSound'
+
 
 
 
