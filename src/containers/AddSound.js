@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from "redux-form"
 import Select from 'react-select'
+import Creatable from 'react-select/lib/Creatable'
 import makeAnimated from 'react-select/lib/animated';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -36,6 +37,7 @@ const FIELDS = {
 }
 
 class Sound extends Component {
+
 
     handleSubmit = (sound) => {
         console.log('history : ', this.props.history)
@@ -87,16 +89,21 @@ class Sound extends Component {
 
 
     renderReactSelect = (field) => {
-       console.log('DATA ', field)
+        console.log('DATA ', field)
         return (
-            <fieldset className="col-md-12 form-group">
+
+            <fieldset className="col-md-12 form-group"  >
                 <label className="bmd-label-floating">{field.label}</label>
                 <Select
-                    name="toto"
+                    {...field.input}
+                    value={field.input.value}
+                    onBlur={() => field.input.onBlur([...field.input.value])}
                     options={field.options}
                     components={makeAnimated()}
                     isMulti
                     closeMenuOnSelect={false}
+
+
                 />
             </fieldset>
         )
@@ -104,7 +111,9 @@ class Sound extends Component {
 
 
     render() {
-        console.log('tones : ', Genres)
+        
+
+
         return (
             <div className="container-fluid pt-5" style={style.container}>
                 <div className="text-center text-white">
@@ -164,8 +173,7 @@ class Sound extends Component {
                                     component={this.renderReactSelect}
                                     options={Genres}
                                     label="genres"
-                                    type="text"
-
+                                   
                                 />
                                 <Field
                                     name={FIELDS.moods}
