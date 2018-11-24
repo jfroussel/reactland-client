@@ -3,13 +3,17 @@ import {
 
 } from "./action-types"
 import axios from 'axios'
+
 const BASE_URL = "http://localhost:3050"
+
+
 
 export function addSound({
     title,
     description,
     filename,
     author,
+    uid,
     bpm,
     tone,
     genres,
@@ -23,6 +27,7 @@ export function addSound({
             description,
             filename,
             author,
+            uid,
             bpm,
             tone,
             genres,
@@ -32,7 +37,6 @@ export function addSound({
             instruments
         }).then((response) => {
             dispatch({ type: ADD_SOUND, payload: response.data })
-           
             history.push("/catalog")
         }).catch((error) => {
             console.log(error)

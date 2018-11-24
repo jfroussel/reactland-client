@@ -65,7 +65,7 @@ class SoundList extends Component {
                                     {
         
                                         id: 'edit',
-                                        Cell: (({ original }) => <button className="btn btn-sm btn-info">Edit</button>),
+                                        Cell: (({ original }) => <button className="btn btn-sm btn-dark">Edit</button>),
         
                                     },
                                     {

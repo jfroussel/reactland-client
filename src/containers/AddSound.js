@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from "redux-form"
 import Select from 'react-select'
-import Creatable from 'react-select/lib/Creatable'
 import makeAnimated from 'react-select/lib/animated';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addSound } from '../actions/sound'
+import { userInfo } from '../actions/auth'
 import { withRouter } from 'react-router'
 import * as validations from '../validations'
 import Tones from "../constants/tones"
@@ -22,11 +22,14 @@ const style = {
 }
 
 
+
+
 const FIELDS = {
     title: "title",
     description: "description",
     filename: "filename",
     author: "author",
+    uid: "uid",
     bpm: "bpm",
     tone: "tone",
     genres: "genres",
@@ -40,7 +43,6 @@ class Sound extends Component {
 
 
     handleSubmit = (sound) => {
-        console.log('history : ', this.props.history)
         this.props.addSound(sound, this.props.history)
     }
 
@@ -89,9 +91,7 @@ class Sound extends Component {
 
 
     renderReactSelect = (field) => {
-        console.log('DATA ', field)
         return (
-
             <fieldset className="col-md-12 form-group"  >
                 <label className="bmd-label-floating">{field.label}</label>
                 <Select
@@ -102,28 +102,35 @@ class Sound extends Component {
                     components={makeAnimated()}
                     isMulti
                     closeMenuOnSelect={false}
-
-
                 />
             </fieldset>
         )
     }
 
-
     render() {
-        
 
 
+
+        console.log('author : ', this.props.user)
         return (
             <div className="container-fluid pt-5" style={style.container}>
-                <div className="text-center text-white">
-                    <h1 className="font-weight-light pt-5 pb-5">Add new sound <br /> into your catalog</h1>
+                <div className="text-center text-dark">
+                    <h1 className="font-weight-light pt-5 pb-5">Add new sound</h1>
                 </div>
-                <p><Link type="button" className="btn btn-sm btn-dark" to="/catalog">Return catalog page</Link></p>
+                <p className="text-center pb-5"><Link type="button" className="btn btn-sm btn-dark" to="/catalog">Return catalog page</Link></p>
                 <div className=" container">
-                    <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
+                    <form onSubmit={this.props.handleSubmit(this.handleSubmit)} >
                         <div className="row">
                             <div className="col-6">
+                               
+                                    <div className="justify-content-md-center">
+                                        <fieldset className="col-md-12 form-group">
+                                            <input className="form-control" value={this.props.author} type="text" />
+                                        </fieldset>
+                                    </div>
+                               
+
+
                                 <Field
                                     name={FIELDS.title}
                                     component={this.renderInputComponent}
@@ -143,28 +150,17 @@ class Sound extends Component {
                                     label="filename"
                                 />
                                 <Field
-                                    name={FIELDS.author}
-                                    component={this.renderInputComponent}
-                                    type="text"
-                                    label="author"
-                                />
-                                <Field
                                     name={FIELDS.bpm}
                                     component={this.renderInputComponent}
                                     type="text"
                                     label="bpm"
-                                //type="text"
-
                                 />
-
                                 <Field
                                     name={FIELDS.tone}
                                     component={this.renderSelectComponent}
                                     type="text"
                                     label="tone"
-
                                 >
-
                                 </Field>
                             </div>
                             <div className="col-6">
@@ -173,14 +169,13 @@ class Sound extends Component {
                                     component={this.renderReactSelect}
                                     options={Genres}
                                     label="genres"
-                                   
+
                                 />
                                 <Field
                                     name={FIELDS.moods}
                                     component={this.renderReactSelect}
                                     options={Moods}
                                     label="moods"
-                                    type="text"
                                 />
                                 <Field
                                     name={FIELDS.loops}
@@ -199,11 +194,11 @@ class Sound extends Component {
                                     component={this.renderReactSelect}
                                     options={Instruments}
                                     label="instruments"
-                                    type="text"
                                 />
                                 <div className="justify-content-md-center pt-5 pb-5">
                                     <button type="submit" className="btn btn-lg btn-info btn-raised">Validate</button>
                                 </div>
+
                             </div>
                         </div>
                     </form>
@@ -215,24 +210,31 @@ class Sound extends Component {
 
 function validate(formValues) {
     const errors = {}
-
     errors.title = validations.validateNotEmpty(formValues.title)
     errors.filename = validations.validateNotEmpty(formValues.filename)
+
     return errors
 }
+
+
 
 const soundForm = reduxForm({
     form: "Sound",
     fields: Object.keys(FIELDS),
+    //initialValues:{author},
     validate
+
 })(Sound)
 
-const mapStateToProps = state => ({
-    addsound: state.addSound
+const mapStateToProps = (state) => ({
+
+    addsound: state.addSound,
+    user: state.userInfo,
+
 })
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ addSound }, dispatch)
+    return bindActionCreators({ addSound, userInfo }, dispatch)
 }
 
 
