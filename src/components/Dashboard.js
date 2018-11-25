@@ -15,12 +15,7 @@ class Dashboard extends Component {
         super(props)
         this.state = {}
     }
-    componentDidMount() {
-        console.log('DASHBOARD : ',this.props)
-    }
-
-    
-    
+   
     render() {
         const { info, isLoggedIn } = this.props
         return (

@@ -32,8 +32,6 @@ class Header extends Component {
     render() {
 
         const { info, isLoggedIn } = this.props
-
-        console.log('INFO : ', info)
         return (
             <div>
                 <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">

@@ -40,8 +40,7 @@ const FIELDS = {
 }
 
 class Sound extends Component {
-
-
+    
     handleSubmit = (sound) => {
         this.props.addSound(sound, this.props.history)
     }
@@ -111,7 +110,7 @@ class Sound extends Component {
 
 
 
-        console.log('author : ', this.props.user)
+        
         return (
             <div className="container-fluid pt-5" style={style.container}>
                 <div className="text-center text-dark">
@@ -125,7 +124,12 @@ class Sound extends Component {
                                
                                     <div className="justify-content-md-center">
                                         <fieldset className="col-md-12 form-group">
-                                            <input className="form-control" value={this.props.author} type="text" />
+                                            <input className="form-control" name={FIELDS.author} type="text" />
+                                        </fieldset>
+                                    </div>
+                                    <div className="justify-content-md-center">
+                                        <fieldset className="col-md-12 form-group">
+                                            <input className="form-control" name={FIELDS.uid} type="text" />
                                         </fieldset>
                                     </div>
                                
@@ -215,13 +219,11 @@ function validate(formValues) {
 
     return errors
 }
-
-
-
+    
 const soundForm = reduxForm({
     form: "Sound",
     fields: Object.keys(FIELDS),
-    //initialValues:{author},
+    enableReinitialize:true,
     validate
 
 })(Sound)
@@ -230,6 +232,8 @@ const mapStateToProps = (state) => ({
 
     addsound: state.addSound,
     user: state.userInfo,
+    initialValues: {uid:state.userInfo.info._id, author:state.userInfo.info.username}
+    
 
 })
 
