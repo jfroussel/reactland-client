@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactTable from "react-table"
 import "react-table/react-table.css"
+import { Link } from 'react-router-dom'
 const style = {
     header: {
         textAlign: 'left',
@@ -65,13 +66,13 @@ class SoundList extends Component {
                                     {
         
                                         id: 'edit',
-                                        Cell: (({ original }) => <button className="btn btn-sm btn-dark">Edit</button>),
+                                        Cell: (({ original }) => <Link to={`/sound-edit/${original._id}`} className="btn btn-sm btn-dark">Edit</Link>),
         
                                     },
                                     {
         
                                         id: 'delete',
-                                        Cell: (({ original }) => <button className="btn btn-sm btn-danger">Delete</button>),
+                                        Cell: (({ original }) => <Link to={`/sound-delete/${original._id}`} className="btn btn-sm btn-danger">Delete</Link>),
         
                                     },
                                     

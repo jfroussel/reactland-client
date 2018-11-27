@@ -7,6 +7,7 @@ import reducers from './reducers'
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+import { Snackbar } from 'react-redux-snackbar'
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
 const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -15,6 +16,7 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers, reduxDevTools)}>
     <div>
       <App />
+      <Snackbar />
     </div>
   </Provider>, document.getElementById('root')
 )

@@ -21,9 +21,6 @@ const style = {
     },
 }
 
-
-
-
 const FIELDS = {
     title: "title",
     description: "description",
@@ -40,7 +37,7 @@ const FIELDS = {
 }
 
 class Sound extends Component {
-    
+
     handleSubmit = (sound) => {
         this.props.addSound(sound, this.props.history)
     }
@@ -110,7 +107,7 @@ class Sound extends Component {
 
 
 
-        
+
         return (
             <div className="container-fluid pt-5" style={style.container}>
                 <div className="text-center text-dark">
@@ -121,20 +118,8 @@ class Sound extends Component {
                     <form onSubmit={this.props.handleSubmit(this.handleSubmit)} >
                         <div className="row">
                             <div className="col-6">
-                               
-                                    <div className="justify-content-md-center">
-                                        <fieldset className="col-md-12 form-group">
-                                            <input className="form-control" name={FIELDS.author} type="text" />
-                                        </fieldset>
-                                    </div>
-                                    <div className="justify-content-md-center">
-                                        <fieldset className="col-md-12 form-group">
-                                            <input className="form-control" name={FIELDS.uid} type="text" />
-                                        </fieldset>
-                                    </div>
-                               
-
-
+                                <input className="form-control" name={FIELDS.author} type="hidden" />
+                                <input className="form-control" name={FIELDS.uid} type="hidden" />
                                 <Field
                                     name={FIELDS.title}
                                     component={this.renderInputComponent}
@@ -216,14 +201,13 @@ function validate(formValues) {
     const errors = {}
     errors.title = validations.validateNotEmpty(formValues.title)
     errors.filename = validations.validateNotEmpty(formValues.filename)
-
     return errors
 }
-    
+
 const soundForm = reduxForm({
     form: "Sound",
     fields: Object.keys(FIELDS),
-    enableReinitialize:true,
+    enableReinitialize: true,
     validate
 
 })(Sound)
@@ -232,8 +216,8 @@ const mapStateToProps = (state) => ({
 
     addsound: state.addSound,
     user: state.userInfo,
-    initialValues: {uid:state.userInfo.info._id, author:state.userInfo.info.username}
-    
+    initialValues: { uid: state.userInfo.info._id, author: state.userInfo.info.username }
+
 
 })
 

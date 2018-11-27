@@ -3,3 +3,5 @@ export const GET_ACCOUNTS = 'GET_ACCOUNTS'
 export const USER_INFO = 'USER_INFO'
 export const CATALOG_LIST = "CATALOG_LIST"
 export const ADD_SOUND = "ADD_SOUND"
+export const READ_SOUND = "READ_SOUND"
+export const DELETE_SOUND = 'DELETE_SOUND'

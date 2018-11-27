@@ -4,7 +4,8 @@ import AuthentificationReducer from "./authentification";
 import AccountReducer from "./account"
 import UserInfo from './userInfoReducer'
 import CatalogList from "./catalog"
-import AddSound from "./sound"
+import SoundReducer from './sound'
+import { snackbarReducer } from 'react-redux-snackbar'
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     accounts: AccountReducer,
     userInfo: UserInfo,
     catalogList : CatalogList,
-    addsound: AddSound
+    sound: SoundReducer,
+    snackbar: snackbarReducer,
   
 })
 
