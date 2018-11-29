@@ -13,7 +13,7 @@ import Signout from './Signout'
 import Signup from './Signup'
 import Account from './Account'
 import AddSound from '../containers/AddSound'
-import Sound from '../components/catalog/Sound'
+import EditSound from '../containers/EditSound'
 import SoundDelete from '../components/catalog/SoundDelete'
 
 
@@ -35,10 +35,12 @@ const App = () => (
             <Route exact path='/signout' component={Signout} />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/dashboard' component={RequireAuthentification(Dashboard)} />
-            <Route exact path='/catalog' component={RequireAuthentification(Catalog)} />
-            <Route exact path='/add-new-sound' component={RequireAuthentification(AddSound)} />
-            <Route exact path='/sound-edit/:id' component={RequireAuthentification(Sound)} />
-            <Route exact path='/sound-delete/:id' component={RequireAuthentification(SoundDelete)} />
+
+            <Route exact path='/catalog' component={Catalog} />
+            <Route exact path='/add-new-sound' component={AddSound} />
+            <Route exact path='/sound-edit/:id' component={EditSound} />
+            <Route exact path='/sound-delete/:id' component={SoundDelete} />
+
             <Route exact path='/sales' component={RequireAuthentification(Sales)} />
             <Route exact path='/statistics' component={RequireAuthentification(Statistics)} />
             <Route exact path='/accounts' component={RequireAuthentification(Account)} />

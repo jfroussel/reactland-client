@@ -1,7 +1,8 @@
 import {
     ADD_SOUND,
     READ_SOUND,
-    DELETE_SOUND
+    DELETE_SOUND,
+    UPDATE_SOUND
 
 } from "./action-types"
 import axios from 'axios'
@@ -50,11 +51,50 @@ export function addSound({
     }
 }
 
+export function updateSound(id,{
+    title,
+    description,
+    filename,
+    author,
+    uid,
+    bpm,
+    tone,
+    genres,
+    moods,
+    loops,
+    lenght,
+    instruments }, history) {
+    return function (dispatch) {
+        axios.put(`${BASE_URL}/sound/${id}`, {
+            title,
+            description,
+            filename,
+            author,
+            uid,
+            bpm,
+            tone,
+            genres,
+            moods,
+            loops,
+            lenght,
+            instruments
+        }).then((response) => {
+            dispatch({ type: UPDATE_SOUND, payload: response.data })
+            dispatch(showSnack({
+                label: `Your sound has been updated !`,
+                timeout: 3000,
+                button: { label: 'OK, GOT IT' }
+            }));
+            history.push("/catalog")
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+}
+
 export function readsound(id) {
-    console.log('action id :',id)
     return function (dispatch) {
         axios.get(`${BASE_URL}/sound/${id}`).then((response) => {
-            console.log('read sound : ', response.data)
             dispatch({ type: READ_SOUND, payload: response.data })
         }).catch((error) => {
             console.log(error)
