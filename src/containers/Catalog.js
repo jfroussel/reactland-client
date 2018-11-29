@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getCatalogList } from '../actions/catalog'
+import { userInfo } from '../actions/auth'
 import { Link } from 'react-router-dom'
 import CatalogList from "../components/catalog/List"
 
@@ -16,7 +17,14 @@ const style = {
 class Catalog extends Component {
 
     componentWillMount() {
-        this.props.getCatalogList()
+        const {id} = this.props.match.params
+        console.log('user : ', id)
+        if(id) {
+            this.props.getCatalogList(id)
+        } else {
+            return console.log('no id')
+        }
+        
     }
 
     render() {
@@ -36,10 +44,11 @@ class Catalog extends Component {
     }
 }
 const mapStateToProps = state => ({
-    catalog: state.catalogList
+    catalog: state.catalogList,
+    user: state.userInfo,
 })
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getCatalogList }, dispatch)
+    return bindActionCreators({ getCatalogList, userInfo }, dispatch)
 
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Catalog)

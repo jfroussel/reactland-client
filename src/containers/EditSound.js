@@ -127,8 +127,8 @@ class Sound extends Component {
                     <form onSubmit={this.props.handleSubmit(this.handleSubmit)} >
                         <div className="row">
                             <div className="col-6">
-                                <input className="form-control" name={FIELDS.author} type="text" defaultValue={sound.author} />
-                                <input className="form-control" name={FIELDS.uid} type="text" defaultValue={sound.uid} />
+                                <input className="form-control" name={FIELDS.author} type="hidden" defaultValue={sound.author} />
+                                <input className="form-control" name={FIELDS.uid} type="hidden" defaultValue={sound.uid} />
                                 <Field
                                     name={FIELDS.title}
                                     component={this.renderInputComponent}

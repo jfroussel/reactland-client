@@ -36,7 +36,7 @@ const App = () => (
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/dashboard' component={RequireAuthentification(Dashboard)} />
 
-            <Route exact path='/catalog' component={Catalog} />
+            <Route exact path='/catalog/:id' component={Catalog} />
             <Route exact path='/add-new-sound' component={AddSound} />
             <Route exact path='/sound-edit/:id' component={EditSound} />
             <Route exact path='/sound-delete/:id' component={SoundDelete} />

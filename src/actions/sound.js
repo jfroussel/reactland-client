@@ -79,11 +79,13 @@ export function updateSound(id,{
             lenght,
             instruments
         }).then((response) => {
+            
             dispatch({ type: UPDATE_SOUND, payload: response.data })
             dispatch(showSnack({
                 label: `Your sound has been updated !`,
                 timeout: 3000,
-                button: { label: 'OK, GOT IT' }
+                button: { label: 'OK, GOT IT' },
+                color: '#fff'
             }));
             history.push("/catalog")
         }).catch((error) => {
@@ -105,7 +107,7 @@ export function readsound(id) {
 export function deletesound(id, history) {
     return function (dispatch) {
         axios.delete(`${BASE_URL}/sound/${id}`).then((response) => {
-            console.log('delete sound : ', response.data, history)
+           
             dispatch({ type: DELETE_SOUND, payload: response.data })
             dispatch(showSnack({
                 label: `Your sound has been deleted !`,
@@ -118,3 +120,5 @@ export function deletesound(id, history) {
         })
     }
 }
+
+

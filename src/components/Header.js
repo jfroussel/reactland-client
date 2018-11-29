@@ -32,6 +32,8 @@ class Header extends Component {
     render() {
 
         const { info, isLoggedIn } = this.props
+        
+        
         return (
             <div>
                 <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
@@ -44,7 +46,7 @@ class Header extends Component {
                                 <Link className="nav-link" to="/dashboard">Dashboard</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/catalog">Catalog</Link>
+                                <Link className="nav-link" to={`/catalog/${isLoggedIn && info ? info._id    : null}`}>Catalog</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/sales">Sales</Link>
