@@ -13,6 +13,7 @@ import Tones from "../constants/tones"
 import Genres from "../constants/genres"
 import Moods from "../constants/moods"
 import Instruments from "../constants/instruments"
+import Upload from '../components/catalog/Upload'
 
 const style = {
     container: {
@@ -105,8 +106,8 @@ class Sound extends Component {
 
     render() {
 
-
-
+        const { user } = this.props
+        console.log('USER : ', this.props)
 
         return (
             <div className="container-fluid pt-5" style={style.container}>
@@ -184,6 +185,7 @@ class Sound extends Component {
                                     options={Instruments}
                                     label="instruments"
                                 />
+                                <Upload  author={user.info.email}  />
                                 <div className="justify-content-md-center pt-5 pb-5">
                                     <button type="submit" className="btn btn-lg btn-info btn-raised">Validate</button>
                                 </div>

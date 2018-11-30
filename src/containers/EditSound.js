@@ -117,12 +117,11 @@ class Sound extends Component {
         const { sound } = this.props
        
         return (
-            <div className="container-fluid pt-5" style={style.container}>
+            <div className="container-fluid pt-5 pb-5" style={style.container}>
                 <div className="text-center text-dark">
                     <h1 className="font-weight-light pt-5 pb-5">Read or modify your sound infos <br />for {sound.title}  </h1>
 
                 </div>
-                <p className="text-center pb-5"><Link type="button" className="btn btn-sm btn-dark" to="/catalog">Return catalog page</Link></p>
                 <div className=" container">
                     <form onSubmit={this.props.handleSubmit(this.handleSubmit)} >
                         <div className="row">

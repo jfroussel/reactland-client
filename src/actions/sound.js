@@ -44,7 +44,7 @@ export function addSound({
                 timeout: 3000,
                 button: { label: 'OK, GOT IT' }
             }));
-            history.push("/catalog")
+            history.push(`/catalog/${response.data.uid}`)
         }).catch((error) => {
             console.log(error)
         })
@@ -87,7 +87,7 @@ export function updateSound(id,{
                 button: { label: 'OK, GOT IT' },
                 color: '#fff'
             }));
-            history.push("/catalog")
+            history.push(`/catalog/${response.data.uid}`)
         }).catch((error) => {
             console.log(error)
         })
@@ -114,7 +114,7 @@ export function deletesound(id, history) {
                 timeout: 3000,
                 button: { label: 'OK, GOT IT' }
             }));
-            history.push("/catalog")
+            history.push(`/catalog/${response.data.uid}`)
         }).catch((error) => {
             console.log(error)
         })
