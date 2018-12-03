@@ -185,7 +185,7 @@ class Sound extends Component {
                                     options={Instruments}
                                     label="instruments"
                                 />
-                                <Upload  author={user.info.email}  />
+                                <Upload  authorID={user.info._id}  />
                                 <div className="justify-content-md-center pt-5 pb-5">
                                     <button type="submit" className="btn btn-lg btn-info btn-raised">Validate</button>
                                 </div>

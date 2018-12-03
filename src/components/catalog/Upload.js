@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-//import firebase from 'firebase';
 import {firebase} from '../../firebase/firebase';
-//import FileUploader from 'react-firebase-file-uploader';
 import CustomUploadButton from 'react-firebase-file-uploader/lib/CustomUploadButton';
 import { Progress } from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
@@ -33,10 +31,8 @@ class Upload extends Component {
         this.notifySuccess(error)
     }
     handleUploadSuccess = (filename,author) => {
-        console.log('FILENAME : ', filename)
-        console.log('AUTHOR : ', author)
+        
         this.setState({ avatar: filename, filename: filename, progress: 100, isUploading: false });
-        //firebase.storage().ref(this.props.author).child(filename).getDownloadURL().then(url => this.setState({ avatarURL: url }));
         firebase.storage().ref(author).child(filename).getDownloadURL().then((url) => {
             console.log(url)
         })
@@ -53,12 +49,11 @@ class Upload extends Component {
                 }
                 {this.state.filename}
 
-                
                 <CustomUploadButton
                     accept="image/audio/*"
                     name="avatar"
                     //randomizeFilename
-                    storageRef={firebase.storage().ref(this.props.author)}
+                    storageRef={firebase.storage().ref(this.props.authorID).child('sounds')}
                     onUploadStart={this.handleUploadStart}
                     onUploadError={this.handleUploadError}
                     onUploadSuccess={this.handleUploadSuccess}
