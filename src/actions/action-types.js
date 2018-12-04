@@ -6,3 +6,5 @@ export const ADD_SOUND = "ADD_SOUND"
 export const READ_SOUND = "READ_SOUND"
 export const DELETE_SOUND = 'DELETE_SOUND'
 export const UPDATE_SOUND = "UPDATE_SOUND"
+export const GET_FILENAME = "GET_FILENAME"
+export const GET_URL = "GET_URL"

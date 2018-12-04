@@ -1,4 +1,4 @@
-import { ADD_SOUND, READ_SOUND, DELETE_SOUND, UPDATE_SOUND } from '../actions/action-types'
+import { ADD_SOUND, READ_SOUND, DELETE_SOUND, UPDATE_SOUND, GET_FILENAME, GET_URL } from '../actions/action-types'
 
 
 export default (state = [], action) => {
@@ -8,21 +8,27 @@ export default (state = [], action) => {
             return {
                 addsound: action.payload
             }
-            
         case UPDATE_SOUND:
             return [
-               { ...state,
-                updatesound: action.payload}
+                {
+                    ...state,
+                    updatesound: action.payload
+                }
             ]
-               
-            
         case READ_SOUND:
-            return  action.payload
-               
-            
+            return action.payload
+
         case DELETE_SOUND:
             return {
                 deletesound: action.payload
+            }
+        case GET_FILENAME:
+            return {
+                filename:action.payload
+            }
+        case GET_URL:
+            return {
+                soundUrl:action.payload
             }
         default:
             return state

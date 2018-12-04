@@ -2,7 +2,9 @@ import {
     ADD_SOUND,
     READ_SOUND,
     DELETE_SOUND,
-    UPDATE_SOUND
+    UPDATE_SOUND,
+    GET_FILENAME,
+    GET_URL
 
 } from "./action-types"
 import axios from 'axios'
@@ -101,6 +103,22 @@ export function readsound(id) {
         }).catch((error) => {
             console.log(error)
         })
+    }
+}
+
+export function getFilename(filename) {
+  
+    return function (dispatch) {
+            dispatch({ type: GET_FILENAME, payload: filename })
+       
+    }
+}
+
+export function getUrl(url) {
+    
+    return function (dispatch) {
+            dispatch({ type: GET_URL, payload: url })
+       
     }
 }
 

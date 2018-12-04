@@ -16,6 +16,7 @@ const rootReducer = combineReducers({
     catalogList : CatalogList,
     sound: SoundReducer,
     snackbar: snackbarReducer,
+    
   
 })
 
