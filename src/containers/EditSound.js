@@ -5,7 +5,7 @@ import makeAnimated from 'react-select/lib/animated';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addSound, readsound, updateSound } from '../actions/sound'
+import { addSound, readsound, updateSound,getUrl } from '../actions/sound'
 import { userInfo } from '../actions/auth'
 import { withRouter } from 'react-router'
 import * as validations from '../validations'
@@ -13,6 +13,7 @@ import Tones from "../constants/tones"
 import Genres from "../constants/genres"
 import Moods from "../constants/moods"
 import Instruments from "../constants/instruments"
+import Upload from '../components/catalog/Upload'
 
 const style = {
     container: {
@@ -25,6 +26,7 @@ const FIELDS = {
     title: "title",
     description: "description",
     filename: "filename",
+    soundUrl: "soundUrl",
     author: "author",
     uid: "uid",
     bpm: "bpm",
@@ -111,6 +113,16 @@ class Sound extends Component {
             </fieldset>
         )
     }
+    renderUploadFile = () => {
+        return (
+            <fieldset className="col-md-12 form-group"  >
+                <label className="bmd-label-floating">Upload your sound</label>
+                <Upload
+                    authorID={this.props.user.info._id}
+                />
+            </fieldset>
+        )
+    }
 
     render() {
 
@@ -128,6 +140,8 @@ class Sound extends Component {
                             <div className="col-6">
                                 <input className="form-control" name={FIELDS.author} type="hidden" defaultValue={sound.author} />
                                 <input className="form-control" name={FIELDS.uid} type="hidden" defaultValue={sound.uid} />
+                                <input className="form-control" name={FIELDS.soundUrl} type="hidden" />
+
                                 <Field
                                     name={FIELDS.title}
                                     component={this.renderInputComponent}
@@ -143,11 +157,10 @@ class Sound extends Component {
                                     defaultValue={sound.description} 
                                 />
                                 <Field
-                                    name={FIELDS.filename}
-                                    component={this.renderInputComponent}
+                                    name="upload"
+                                    component={this.renderUploadFile}
                                     type="text"
                                     label="filename"
-                                    defaultValue={sound.filename} 
                                 />
                                 <Field
                                     name={FIELDS.bpm}
@@ -242,7 +255,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ addSound, userInfo, readsound, updateSound }, dispatch)
+    return bindActionCreators({ addSound, userInfo, readsound, updateSound,getUrl }, dispatch)
 }
 
 

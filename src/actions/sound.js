@@ -15,7 +15,7 @@ const BASE_URL = "http://localhost:3050"
 export function addSound({
     title,
     description,
-    filename,
+    soundUrl,
     author,
     uid,
     bpm,
@@ -29,7 +29,7 @@ export function addSound({
         axios.post(`${BASE_URL}/sound`, {
             title,
             description,
-            filename,
+            soundUrl,
             author,
             uid,
             bpm,
@@ -56,7 +56,7 @@ export function addSound({
 export function updateSound(id,{
     title,
     description,
-    filename,
+    soundUrl,
     author,
     uid,
     bpm,
@@ -70,7 +70,7 @@ export function updateSound(id,{
         axios.put(`${BASE_URL}/sound/${id}`, {
             title,
             description,
-            filename,
+            soundUrl,
             author,
             uid,
             bpm,

@@ -25,7 +25,6 @@ const style = {
 const FIELDS = {
     title: "title",
     description: "description",
-    filename: "filename",
     soundUrl: "soundUrl",
     author: "author",
     uid: "uid",
@@ -124,7 +123,7 @@ class Sound extends Component {
     render() {
 
         const { user } = this.props
-        console.log('URL PROPS : ', this.props.soundUrl)
+        console.log('URL PROPS : ', this.props.sound)
        
         return (
             <div className="container-fluid pt-5" style={style.container}>
@@ -155,6 +154,7 @@ class Sound extends Component {
                                 />
                                
                                 <Field
+                                    name="upload"
                                     component={this.renderUploadFile}
                                     type="text"
                                     label="filename"
@@ -224,7 +224,7 @@ class Sound extends Component {
 function validate(formValues) {
     const errors = {}
     errors.title = validations.validateNotEmpty(formValues.title)
-    errors.filename = validations.validateNotEmpty(formValues.filename)
+    errors.soundUrl = validations.validateNotEmpty(formValues.soundUrl)
     return errors
 }
 
@@ -241,7 +241,7 @@ const mapStateToProps = (state) => ({
     addsound: state.addSound,
     user: state.userInfo,
     sound: state.sound,
-    initialValues: { uid: state.userInfo.info._id, author: state.userInfo.info.username,  soundUrl:state.sound}
+    initialValues: { uid: state.userInfo.info._id, author: state.userInfo.info.username,  soundUrl:state.sound.soundUrl}
 
 
 })

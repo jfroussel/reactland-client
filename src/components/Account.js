@@ -25,9 +25,7 @@ class Account extends Component {
                     <h1 className="font-weight-light pb-5">Account page</h1>
                     <div className="text-success">
                         <ul>
-                            {
-                                JSON.stringify(accounts)
-                            }
+                            
                         </ul>
                     </div>
                 </header>
