@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getAccounts } from '../actions/accounts'
+import Uploader from '../elements/uploader'
 const style = {
     container: {
         backgroundColor: '#282c34',
@@ -24,9 +25,7 @@ class Account extends Component {
                 <header className="App-header">
                     <h1 className="font-weight-light pb-5">Account page</h1>
                     <div className="text-success">
-                        <ul>
-                            
-                        </ul>
+                        <Uploader />
                     </div>
                 </header>
             </div>
