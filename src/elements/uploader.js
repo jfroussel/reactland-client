@@ -9,7 +9,7 @@ const style = {
         lineHeight: '2rem',
         height: '20rem',
         borderWidth: '4px',
-        borderColor: 'rgba(102, 102, 102, 0.61)',
+        borderColor: 'rgba(102, 102, 102, 0.38)',
         borderStyle: 'dashed',
         borderRadius: '5px',
     },
@@ -26,7 +26,9 @@ class Uploader extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            files: []
+        }
         this.onDrop = this.onDrop.bind(this)
     }
 
@@ -34,6 +36,7 @@ class Uploader extends Component {
         this.setState({
           files
         });
+        console.log("FILES PROPS ",files)
       }
 
     render() {
@@ -50,11 +53,9 @@ class Uploader extends Component {
                                 cloud_download
                             </i>
                             <p className="text-muted pb-5" style={style.text}>Drag and drop Files to upload</p>
-                            <button className="btn  btn-dark"  type="button" onClick={() => open()}>
+                            <button className="btn  btn-secondary"  type="button" onClick={() => open()}>
                                 Or select files to Upload.
                             </button>
-                            <p>{JSON.stringify(this.state.files)}</p>
-
                         </React.Fragment>
                     )}
                 </Dropzone>

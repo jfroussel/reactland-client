@@ -20,7 +20,6 @@ class Upload extends Component {
             avatarURL: '',
             filename: '',
             url:''
-
         }
     }
 
