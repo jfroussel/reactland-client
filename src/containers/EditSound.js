@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from "redux-form"
 import Select from 'react-select'
 import makeAnimated from 'react-select/lib/animated';
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addSound, readsound, updateSound,getUrl } from '../actions/sound'

@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getUrl } from '../../actions/sound'
 import { firebase } from '../../firebase/firebase';
-import CustomUploadButton from 'react-firebase-file-uploader/lib/CustomUploadButton';
+//import CustomUploadButton from 'react-firebase-file-uploader/lib/CustomUploadButton';
+import CustomUploadButton from '../../elements/uploader'
 import { Progress } from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
 import { ToastContainer, toast } from 'react-toastify';
@@ -64,7 +65,6 @@ class Upload extends Component {
                     onUploadError={this.handleUploadError}
                     onUploadSuccess={this.handleUploadSuccess}
                     onProgress={this.handleProgress}
-                    style={{ backgroundColor: 'gray', cursor: 'pointer', color: 'white', padding: 10, borderRadius: 4 }}
                    
                 >
                     Télécharger

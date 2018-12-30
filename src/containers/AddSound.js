@@ -5,7 +5,7 @@ import makeAnimated from 'react-select/lib/animated';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addSound,  getUrl } from '../actions/sound'
+import { addSound, getUrl } from '../actions/sound'
 import { userInfo } from '../actions/auth'
 import { withRouter } from 'react-router'
 import * as validations from '../validations'
@@ -37,6 +37,7 @@ const FIELDS = {
     instruments: "instruments"
 }
 
+
 class Sound extends Component {
 
     constructor(props) {
@@ -45,6 +46,7 @@ class Sound extends Component {
     }
 
     handleSubmit = (sound) => {
+
         this.props.addSound(sound, this.props.history)
     }
 
@@ -113,18 +115,16 @@ class Sound extends Component {
         return (
             <fieldset className="col-md-12 form-group"  >
                 <label className="bmd-label-floating">Upload your sound</label>
-                <Upload
-                    authorID={this.props.user.info._id}
-                />
+                <Upload authorID={this.props.user.info._id} />
             </fieldset>
         )
     }
 
     render() {
 
-        const { user } = this.props
+        
         console.log('URL PROPS : ', this.props.sound)
-       
+
         return (
             <div className="container-fluid pt-5" style={style.container}>
                 <div className="text-center text-dark">
@@ -138,8 +138,8 @@ class Sound extends Component {
                                 <input className="form-control" name={FIELDS.author} type="hidden" />
                                 <input className="form-control" name={FIELDS.uid} type="hidden" />
                                 <input className="form-control" name={FIELDS.soundUrl} type="hidden" />
-                               
-                               
+
+
                                 <Field
                                     name={FIELDS.title}
                                     component={this.renderInputComponent}
@@ -152,15 +152,18 @@ class Sound extends Component {
                                     type="text"
                                     label="description"
                                 />
-                               
+
                                 <Field
                                     name="upload"
                                     component={this.renderUploadFile}
                                     type="text"
                                     label="filename"
                                 />
-                                
-                                
+
+
+
+                            </div>
+                            <div className="col-6">
                                 <Field
                                     name={FIELDS.bpm}
                                     component={this.renderInputComponent}
@@ -174,8 +177,6 @@ class Sound extends Component {
                                     label="tone"
                                 >
                                 </Field>
-                            </div>
-                            <div className="col-6">
                                 <Field
                                     name={FIELDS.genres}
                                     component={this.renderReactSelect}
@@ -207,7 +208,7 @@ class Sound extends Component {
                                     options={Instruments}
                                     label="instruments"
                                 />
-                                
+
                                 <div className="justify-content-md-center pt-5 pb-5">
                                     <button type="submit" className="btn btn-lg btn-info btn-raised">Validate</button>
                                 </div>
@@ -241,13 +242,13 @@ const mapStateToProps = (state) => ({
     addsound: state.addSound,
     user: state.userInfo,
     sound: state.sound,
-    initialValues: { uid: state.userInfo.info._id, author: state.userInfo.info.username,  soundUrl:state.sound.soundUrl}
+    initialValues: { uid: state.userInfo.info._id, author: state.userInfo.info.username, soundUrl: state.sound.soundUrl }
 
 
 })
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ addSound, userInfo,  getUrl }, dispatch)
+    return bindActionCreators({ addSound, userInfo, getUrl }, dispatch)
 }
 
 
