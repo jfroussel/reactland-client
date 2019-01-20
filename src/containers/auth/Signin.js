@@ -6,12 +6,27 @@ import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import * as validations from '../../validations'
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button';
 
-const style = {
-    error: {
-        color: '#e83e8c'
+const styles = theme => ({
+    container: {
+        display: 'flex 1',
+        flexWrap: 'wrap',
+    },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 200,
+    },
+    dense: {
+        marginTop: 19,
+    },
+    menu: {
+        width: 200,
     }
-}
+});
 
 const FIELDS = { email: "email", password: "password" }
 
@@ -21,41 +36,53 @@ class Signin extends Component {
         this.props.signinUser(credentials, this.props.history)
     }
 
-    renderInputComponent = (field) => {
+    renderInput = (field) => {
         return (
-            <div className="justify-content-md-center">
-                <fieldset className="col-md-12 form-group">
-                    <label className="md-label-floating">{field.label}</label>
-                    <input className="form-control" {...field.input} type={field.type} />
-                    {field.meta.touched && field.meta.error && <span style={style.error}>{field.meta.error}</span>}
-                </fieldset>
+            <div>
+                <TextField
+                    label={field.label}
+                    className={this.props.classes.textField}
+                    type={field.type}
+                    autoComplete="current-password"
+                    margin="normal"
+                    {...field.input}
+                />
             </div>
         )
     }
 
     render() {
+        const { classes } = this.props;
 
         return (
             <div className="App">
                 <header className="App-header">
-                    <h3 className="font-weight-light pb-5">Login</h3>
-                    <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
+                    <h3 className="font-weight-light">Login</h3>
+                    <form
+                        className={classes.container} noValidate autoComplete="off" onSubmit={this.props.handleSubmit(this.handleSubmit)}>
+
                         <Field
                             name={FIELDS.email}
-                            component={this.renderInputComponent}
+                            component={this.renderInput}
                             type="text"
                             label="email"
                         />
                         <Field
                             name={FIELDS.password}
-                            component={this.renderInputComponent}
+                            component={this.renderInput}
                             type="password"
                             label="password"
                         />
+
                         <div className="justify-content-md-center pb-5 pt-5">
-                            <button type="submit" className="btn  btn-primary btn-raised">Connexion</button>
+                            <Button type="submit" variant="contained" color="primary" className={classes.button}>
+                                Connexion
+                            </Button>
                         </div>
-                        <p>Not register ! <br /><Link to="/signup"> create your account now !</Link></p>
+                        <h5 className="font-weight-light">Not register !</h5>
+                        <Link to="/signup" style={{ textDecoration: "none" }}>
+                            <h5 className="font-weight-light"> create your account now !</h5>
+                        </Link>
                     </form>
                 </header>
             </div>
@@ -88,4 +115,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(signinForm)) 
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(signinForm))) 

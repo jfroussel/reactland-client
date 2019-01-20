@@ -22,6 +22,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import ProfilePicture from '../../assets/jeff.jpg'
 import Avatar from '@material-ui/core/Avatar'
+import LeftSideBar from '../../components/leftSideBar';
 
 const styles = theme => ({
     root: {
@@ -100,10 +101,11 @@ class Appbar extends Component {
         this.state = {
             anchorEl: null,
             mobileMoreAnchorEl: null,
+            openSidebar: false
         }
     }
 
-
+    
     handleProfileMenuOpen = event => {
         this.setState({ anchorEl: event.currentTarget })
     }
@@ -121,10 +123,19 @@ class Appbar extends Component {
         this.setState({ mobileMoreAnchorEl: null })
     }
 
+    openClickMenu = () => {
+        const open = this.state.openSidebar
+        if (open) {
+            this.setState({ openSidebar: false })
+        }
+        this.setState({ openSidebar: true })
+    }
+    
+
 
 
     render() {
-        console.log('appbar props : ', this.props)
+        console.log('appbar props : ', this.state)
         const { anchorEl, mobileMoreAnchorEl } = this.state
         const { classes } = this.props
         const isMenuOpen = Boolean(anchorEl)
@@ -201,7 +212,7 @@ class Appbar extends Component {
             <div className={classes.root}>
                 <AppBar position="static">
                     <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+                        <IconButton className={classes.menuButton} onClick={this.openClickMenu} color="inherit" aria-label="Open drawer">
                             <MenuIcon />
                         </IconButton>
                         <Typography className={classes.title} variant="h6" color="inherit" noWrap>
@@ -240,8 +251,8 @@ class Appbar extends Component {
                                 {
                                     !isLogged ? <AccountCircle /> : <Avatar
                                         src={ProfilePicture}
-                                        style={{width: 40,height: 40,}}
-                                            
+                                        style={{ width: 40, height: 40, }}
+
                                     />
                                 }
 
@@ -254,6 +265,7 @@ class Appbar extends Component {
                         </div>
                     </Toolbar>
                 </AppBar>
+                <LeftSideBar openSidebar={this.state.openSidebar} />
                 {!isLogged ? renderMenuIsNotLogged : renderMenuIsLogged}
                 {renderMobileMenu}
             </div>

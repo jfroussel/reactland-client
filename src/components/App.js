@@ -12,6 +12,7 @@ import Signout from '../containers/auth/Signout'
 import Signup from '../containers/auth/Signup'
 import Account from './account/Account'
 
+
 const style = {
     container: {
         backgroundColor: '#fff',
@@ -31,6 +32,7 @@ const App = () => (
             <Route exact path='/sales' component={RequireAuthentification(Sales)} />
             <Route exact path='/statistics' component={RequireAuthentification(Statistics)} />
             <Route exact path='/account' component={RequireAuthentification(Account)} />
+            
         </div>
     </Router>
 );
