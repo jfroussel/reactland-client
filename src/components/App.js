@@ -7,9 +7,9 @@ import Sales from './Sales'
 import Statistics from './Statistics'
 import RequireAuthentification from '../helpers/require-authentification'
 import Navbar from './header'
-import Signin from './Signin'
-import Signout from './Signout'
-import Signup from './Signup'
+import Signin from '../containers/auth/Signin'
+import Signout from '../containers/auth/Signout'
+import Signup from '../containers/auth/Signup'
 import Account from './account/Account'
 
 const style = {
@@ -31,8 +31,6 @@ const App = () => (
             <Route exact path='/sales' component={RequireAuthentification(Sales)} />
             <Route exact path='/statistics' component={RequireAuthentification(Statistics)} />
             <Route exact path='/account' component={RequireAuthentification(Account)} />
-            
-
         </div>
     </Router>
 );

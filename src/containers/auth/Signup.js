@@ -1,11 +1,11 @@
 import React, { Component } from "react"
 import { Field, reduxForm } from "redux-form"
-import { signinUser } from "../actions/auth"
 import { connect } from "react-redux"
 import { bindActionCreators } from 'redux'
+import { signupUser} from "../../actions/auth"
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
-import * as validations from '../validations'
+import * as validations from '../../validations'
 
 const style = {
     error: {
@@ -13,19 +13,19 @@ const style = {
     }
 }
 
-const FIELDS = { email: "email", password: "password" }
+const FIELDS = { email: "email", password: "password", confirmPassword: "confirmPassword", username: "username" }
 
-class Signin extends Component {
+class Signup extends Component {
 
     handleSubmit = (credentials) => {
-        this.props.signinUser(credentials, this.props.history)
+        this.props.signupUser(credentials, this.props.history)
     }
 
     renderInputComponent = (field) => {
         return (
             <div className="justify-content-md-center">
                 <fieldset className="col-md-12 form-group">
-                    <label className="md-label-floating">{field.label}</label>
+                    <label className="bmd-label-floating">{field.label}</label>
                     <input className="form-control" {...field.input} type={field.type} />
                     {field.meta.touched && field.meta.error && <span style={style.error}>{field.meta.error}</span>}
                 </fieldset>
@@ -38,8 +38,14 @@ class Signin extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <h3 className="font-weight-light pb-5">Login</h3>
+                    <h1 className="font-weight-light pb-5">Register</h1>
                     <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
+                        <Field
+                            name={FIELDS.username}
+                            component={this.renderInputComponent}
+                            type="text"
+                            label="username"
+                        />
                         <Field
                             name={FIELDS.email}
                             component={this.renderInputComponent}
@@ -52,10 +58,16 @@ class Signin extends Component {
                             type="password"
                             label="password"
                         />
-                        <div className="justify-content-md-center pb-5 pt-5">
-                            <button type="submit" className="btn  btn-primary btn-raised">Connexion</button>
+                        <Field
+                            name={FIELDS.confirmPassword}
+                            component={this.renderInputComponent}
+                            type="password"
+                            label="confirm password"
+                        />
+                        <div className="justify-content-md-center pt-5 pb-5">
+                            <button type="submit" className="btn btn-lg btn-primary btn-raised">Register</button>
                         </div>
-                        <p>Not register ! <br /><Link to="/signup"> create your account now !</Link></p>
+                        <p>You have an account ! <Link to="/signin">login !</Link></p>
                     </form>
                 </header>
             </div>
@@ -67,15 +79,16 @@ function validate(formValues) {
     const errors = {}
     errors.email = validations.validateEmail(formValues.email)
     errors.password = validations.validateNotEmpty(formValues.password)
+    errors.username = validations.validateNotEmpty(formValues.username)
+    errors.confirmPassword = validations.validateEqualPassword(formValues.password, formValues.confirmPassword)
     return errors
 }
 
-
-const signinForm = reduxForm({
-    form: "Signin",
+const signupForm = reduxForm({
+    form: "Signup",
     fields: Object.keys(FIELDS),
     validate
-})(Signin)
+})(Signup)
 
 const mapStateToProps = (state) => {
     return {
@@ -83,9 +96,8 @@ const mapStateToProps = (state) => {
     };
 }
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ signinUser }, dispatch)
+    return bindActionCreators({ signupUser }, dispatch)
 
 }
 
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(signinForm)) 
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(signupForm)) 
