@@ -1,75 +1,14 @@
 import React, { Component } from 'react';
-import Logo from '../../assets/logo.png'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { userInfo, setAuthentification } from '../../actions/auth'
-import Avatar from '@material-ui/core/Avatar'
-import UserMenu from './UserMenu'
-import AccountIcon from '@material-ui/icons/People'
-
-const style = {
-    avatar: {
-        margin: 10
-    }
-};
+import Appbar from './Appbar'
 
 class Header extends Component {
-
-    renderAuthLink = () => {
-        if (this.props.isLoggedIn) {
-            return (
-                <UserMenu />
-            )
-        } else {
-            return (
-                <Link to="/signin">
-                    <Avatar style={style.avatar}>
-                        <AccountIcon />
-                    </Avatar>
-                </Link>
-            )
-        }
-    }
-
     render() {
-        const { info, isLoggedIn } = this.props
         return (
             <div>
-                <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-                    <Link className="navbar-brand" to="/">
-                        <img src={Logo} width="170" className="d-inline-block align-top" alt="" />
-                    </Link>
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/dashboard">Dashboard</Link>
-                            </li>
-                        </ul>
-                        <ul className="navbar-nav ml-auto">
-                            <span className="navbar-text text-dark">
-                                {
-                                    isLoggedIn && info ? `You are now logged  :  ${info.email}   ` : null
-                                }
-                            </span>
-                        </ul>
-                        <ul className="navbar-nav ml-auto">
-                            {this.renderAuthLink()}
-                        </ul>
-                    </div>
-                </nav>
+                <Appbar props={this.props} />
             </div>
         );
     }
 }
 
-const mapStateToProps = state => ({
-    isLoggedIn: state.authentification.isLoggedIn,
-    info: state.userInfo.info
-})
-
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ setAuthentification, userInfo }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default Header
