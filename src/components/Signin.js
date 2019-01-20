@@ -25,7 +25,7 @@ class Signin extends Component {
         return (
             <div className="justify-content-md-center">
                 <fieldset className="col-md-12 form-group">
-                    <label className="bmd-label-floating">{field.label}</label>
+                    <label className="md-label-floating">{field.label}</label>
                     <input className="form-control" {...field.input} type={field.type} />
                     {field.meta.touched && field.meta.error && <span style={style.error}>{field.meta.error}</span>}
                 </fieldset>
@@ -38,7 +38,7 @@ class Signin extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <h1 className="font-weight-light pb-5">Login</h1>
+                    <h3 className="font-weight-light pb-5">Login</h3>
                     <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
                         <Field
                             name={FIELDS.email}
@@ -53,7 +53,7 @@ class Signin extends Component {
                             label="password"
                         />
                         <div className="justify-content-md-center pb-5 pt-5">
-                            <button type="submit" className="btn btn-lg btn-primary btn-raised">Connexion</button>
+                            <button type="submit" className="btn  btn-primary btn-raised">Connexion</button>
                         </div>
                         <p>Not register ! <br /><Link to="/signup"> create your account now !</Link></p>
                     </form>

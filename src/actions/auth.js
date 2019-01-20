@@ -12,7 +12,6 @@ export function signinUser({ email, password }, history) {
             email,
             password
         }).then((response) => {
-
             localStorage.setItem("token", response.data.token)
             dispatch(setAuthentification(true))
             dispatch(userInfo(response.data.info))
@@ -31,12 +30,14 @@ export function signupUser({ email, password, username }, history) {
             password,
             username
         }).then((response) => {
+           
             localStorage.setItem("token", response.data.token)
             dispatch(setAuthentification(true))
-            dispatch(userInfo(response.data.info))
+            dispatch(userInfo(JSON.parse(response.config.data)))
             history.push("/dashboard")
-        }).catch((error) => {
-            console.log(error)
+        })
+        .catch((error) => {
+            console.log('signup error',error)
         })
     }
 }

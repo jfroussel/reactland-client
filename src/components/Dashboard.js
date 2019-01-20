@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userInfo} from '../actions/auth'
 
+
+
+
 const style = {
     container: {
         backgroundColor: '#282c34',
@@ -21,7 +24,7 @@ class Dashboard extends Component {
         return (
             <div style={style.container}>
                 <header className="App-header text-center">
-                    <h1 className="font-weight-light pb-5">Welcome <br /> {isLoggedIn && info ? info.username : null} <br /> on your dashboard</h1>
+                    <h3 className="font-weight-light pb-5">Welcome <br /> {isLoggedIn && info ? info.username : null} </h3>
                 </header>
             </div>
         );
