@@ -48,6 +48,8 @@ class Signup extends Component {
                     margin="normal"
                     {...field.input}
                 />
+                    {field.meta.touched && field.meta.error && <div><span style={{color:"red"}}>{field.meta.error}</span></div>}
+
             </div>
         )
     }
@@ -88,7 +90,7 @@ class Signup extends Component {
                                 Register
                             </Button>
                         </div>
-                      
+
                         <h5 className="font-weight-light">You have an account !</h5>
                         <Link to="/signin" style={{ textDecoration: "none" }}>
                             <h5 className="font-weight-light">login !</h5>
@@ -125,4 +127,4 @@ const mapDispatchToProps = (dispatch) => {
 
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(styles) (signupForm))) 
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(signupForm))) 

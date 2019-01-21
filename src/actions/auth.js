@@ -18,6 +18,7 @@ export function signinUser({ email, password }, history) {
             history.push("/dashboard")
         }).catch((error) => {
             console.log(error)
+            history.push("/401")
         })
     }
 }

@@ -11,6 +11,7 @@ import Signin from '../containers/auth/Signin'
 import Signout from '../containers/auth/Signout'
 import Signup from '../containers/auth/Signup'
 import Account from './account/Account'
+import Error401 from '../components/error/401'
 
 
 const style = {
@@ -32,6 +33,7 @@ const App = () => (
             <Route exact path='/sales' component={RequireAuthentification(Sales)} />
             <Route exact path='/statistics' component={RequireAuthentification(Statistics)} />
             <Route exact path='/account' component={RequireAuthentification(Account)} />
+            <Route exact path='/401' component={Error401} />
             
         </div>
     </Router>
