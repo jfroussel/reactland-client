@@ -22,7 +22,6 @@ import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import ProfilePicture from '../../assets/jeff.jpg'
 import Avatar from '@material-ui/core/Avatar'
-import LeftSideBar from '../../components/leftSideBar';
 
 const styles = theme => ({
     root: {
@@ -105,7 +104,7 @@ class Appbar extends Component {
         }
     }
 
-    
+
     handleProfileMenuOpen = event => {
         this.setState({ anchorEl: event.currentTarget })
     }
@@ -122,17 +121,8 @@ class Appbar extends Component {
     handleMobileMenuClose = () => {
         this.setState({ mobileMoreAnchorEl: null })
     }
-    /*
-    openClickMenu = () => {
-        const open = this.state.openSidebar
-        if (open) {
-            this.setState({ openSidebar: false })
-        }
-        this.setState({ openSidebar: true })
-    }
-    */
 
-
+    
 
     render() {
         console.log('appbar props : ', this.state)
@@ -141,6 +131,7 @@ class Appbar extends Component {
         const isMenuOpen = Boolean(anchorEl)
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
         const isLogged = this.props.isLoggedIn
+
 
 
         const renderMenuIsLogged = (
@@ -212,7 +203,7 @@ class Appbar extends Component {
             <div className={classes.root}>
                 <AppBar position="static">
                     <Toolbar>
-                        <IconButton className={classes.menuButton}  color="inherit" aria-label="Open drawer">
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
                             <MenuIcon />
                         </IconButton>
                         <Typography className={classes.title} variant="h6" color="inherit" noWrap>
@@ -265,7 +256,6 @@ class Appbar extends Component {
                         </div>
                     </Toolbar>
                 </AppBar>
-                <LeftSideBar openSidebar={this.state.openSidebar} />
                 {!isLogged ? renderMenuIsNotLogged : renderMenuIsLogged}
                 {renderMobileMenu}
             </div>

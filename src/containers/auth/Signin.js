@@ -47,7 +47,7 @@ class Signin extends Component {
                     margin="normal"
                     {...field.input}
                 />
-                {field.meta.touched && field.meta.error && <div><span style={{color:"red"}}>{field.meta.error}</span></div>}
+                {field.meta.touched && field.meta.error && <div><span style={{color:"red",fontSize:12}}>{field.meta.error}</span></div>}
 
             </div>
         )
