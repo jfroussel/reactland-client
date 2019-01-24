@@ -10,6 +10,7 @@ import Navbar from './header'
 import Signin from '../containers/auth/Signin'
 import Signout from '../containers/auth/Signout'
 import Signup from '../containers/auth/Signup'
+import ResetPassword from '../containers/auth/ResetPassword'
 import Account from './account/Account'
 import Error401 from '../components/error/401'
 
@@ -29,6 +30,7 @@ const App = () => (
             <Route exact path='/signin' component={Signin} />
             <Route exact path='/signout' component={Signout} />
             <Route exact path='/signup' component={Signup} />
+            <Route exact path='/reset-password' component={ResetPassword} />
             <Route exact path='/dashboard' component={RequireAuthentification(Dashboard)} />
             <Route exact path='/sales' component={RequireAuthentification(Sales)} />
             <Route exact path='/statistics' component={RequireAuthentification(Statistics)} />

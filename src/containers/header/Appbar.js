@@ -125,7 +125,6 @@ class Appbar extends Component {
     
 
     render() {
-        console.log('appbar props : ', this.state)
         const { anchorEl, mobileMoreAnchorEl } = this.state
         const { classes } = this.props
         const isMenuOpen = Boolean(anchorEl)

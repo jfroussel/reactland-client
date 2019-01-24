@@ -23,13 +23,33 @@ export function signinUser({ email, password }, history) {
     }
 }
 
-export function signupUser({ email, password, username }, history) {
+export function signupUser({ email, password, username, subscribe }, history) {
     console.log('action', history)
     return function (dispatch) {
         axios.post(`${BASE_URL}/signup`, {
             email,
             password,
-            username
+            username,
+            subscribe
+        }).then((response) => {
+           
+            localStorage.setItem("token", response.data.token)
+            dispatch(setAuthentification(true))
+            dispatch(userInfo(JSON.parse(response.config.data)))
+            history.push("/dashboard")
+        })
+        .catch((error) => {
+            console.log('signup error',error)
+        })
+    }
+}
+
+export function resetPassword({ email, password}, history) {
+    console.log('reset', history)
+    return function (dispatch) {
+        axios.post(`${BASE_URL}/reset-password`, {
+            email,
+            password,
         }).then((response) => {
            
             localStorage.setItem("token", response.data.token)

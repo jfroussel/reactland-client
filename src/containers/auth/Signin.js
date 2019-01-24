@@ -85,6 +85,9 @@ class Signin extends Component {
                         <Link to="/signup" style={{ textDecoration: "none" }}>
                             <h5 className="font-weight-light"> create your account now !</h5>
                         </Link>
+                        <Link to="/reset-password" style={{ textDecoration: "none" }}>
+                            <h5 className="font-weight-light"> forgotten password !</h5>
+                        </Link>
                     </form>
                 </header>
             </div>
