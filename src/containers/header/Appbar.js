@@ -90,6 +90,9 @@ const styles = theme => ({
         [theme.breakpoints.up('md')]: {
             display: 'none',
         },
+    },
+    link:{
+        textDecoration: 'none'
     }
 })
 
@@ -122,7 +125,8 @@ class Appbar extends Component {
         this.setState({ mobileMoreAnchorEl: null })
     }
 
-    
+
+
 
     render() {
         const { anchorEl, mobileMoreAnchorEl } = this.state
@@ -232,21 +236,33 @@ class Appbar extends Component {
                                     <NotificationsIcon />
                                 </Badge>
                             </IconButton>
-                            <IconButton
-                                aria-owns={isMenuOpen ? 'material-appbar' : undefined}
-                                aria-haspopup="true"
-                                onClick={this.handleProfileMenuOpen}
-                                color="inherit"
-                            >
-                                {
-                                    !isLogged ? <AccountCircle /> : <Avatar
-                                        src={ProfilePicture}
-                                        style={{ width: 40, height: 40, }}
+                            {
+                                !isLogged &&
+                                <Link to="/signin" className={classes.link} >
+                                    <IconButton color="inherit">
+                                        <AccountCircle style={{color:'#fff'}} />
+                                    </IconButton>
+                                </Link>
+                            }
+                            {
+                                isLogged &&
+                                <IconButton
+                                    aria-owns={isMenuOpen ? 'material-appbar' : undefined}
+                                    aria-haspopup="true"
+                                    onClick={this.handleProfileMenuOpen}
+                                    color="inherit"
+                                >
+                                    {
+                                        <Avatar
+                                            src={ProfilePicture}
+                                            style={{ width: 40, height: 40, }}
+                                        />
+                                    }
 
-                                    />
-                                }
+                                </IconButton>
+                            }
 
-                            </IconButton>
+
                         </div>
                         <div className={classes.sectionMobile}>
                             <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">

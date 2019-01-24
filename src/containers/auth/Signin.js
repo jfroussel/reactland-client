@@ -47,7 +47,7 @@ class Signin extends Component {
                     margin="normal"
                     {...field.input}
                 />
-                {field.meta.touched && field.meta.error && <div><span style={{color:"red",fontSize:12}}>{field.meta.error}</span></div>}
+                {field.meta.touched && field.meta.error && <div><span style={{ color: "red", fontSize: 12 }}>{field.meta.error}</span></div>}
 
             </div>
         )
@@ -81,13 +81,18 @@ class Signin extends Component {
                                 Connexion
                             </Button>
                         </div>
-                        <h5 className="font-weight-light">Not register !</h5>
-                        <Link to="/signup" style={{ textDecoration: "none" }}>
-                            <h5 className="font-weight-light"> create your account now !</h5>
-                        </Link>
-                        <Link to="/reset-password" style={{ textDecoration: "none" }}>
-                            <h5 className="font-weight-light"> forgotten password !</h5>
-                        </Link>
+
+                        <h6 className="font-weight-light">Not register !
+                            <Link to="/signup" style={{ textDecoration: "none" }}>
+                                <span>   create your account now !</span>
+                            </Link>
+                        </h6>
+                        <h6 className="font-weight-light">Forgotten password !
+                            <Link to="/reset-password" style={{ textDecoration: "none" }}>
+                                <span>  Reset</span>
+                            </Link>
+                        </h6>
+
                     </form>
                 </header>
             </div>

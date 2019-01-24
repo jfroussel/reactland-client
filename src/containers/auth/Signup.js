@@ -114,7 +114,7 @@ class Signup extends Component {
                             type="password"
                             label="confirm password"
                         />
-                        
+
 
                         <div className="justify-content-md-center pb-5 pt-5">
                             <Button type="submit" variant="contained" color="primary" className={classes.button}>
@@ -122,15 +122,14 @@ class Signup extends Component {
                             </Button>
                         </div>
 
-                        <h6 className="font-weight-light ">You have an account !   
+                        <h6 className="font-weight-light ">You have an account !
                         <Link to="/signin" style={{ textDecoration: "none" }}>
                                 <span>      login </span>
-                        </Link>
+                            </Link>
                         </h6>
                         <Field
                             name={FIELDS.subscribe}
                             component={this.renderCheckBox}
-
                         />
                     </form>
                 </header>
