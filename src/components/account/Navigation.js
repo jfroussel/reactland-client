@@ -5,21 +5,14 @@ import Catalog from './Catalog'
 import Profile from './Profile'
 const style = {
     link: {
-        color:"#6c757d"
+        color: "#6c757d"
     }
 }
 
-
 class Navigation extends Component {
 
-    
-    componentWillMount() {
-        console.log('nav props ',this.props)
-    }
-    
-
     render() {
-        const {info} = this.props
+        const { info } = this.props
         const routes = [
             {
                 path: "/account-profile",
@@ -48,7 +41,7 @@ class Navigation extends Component {
                             background: "#f0f0f0"
                         }}
                     >
-                        <ul style={{ listStyleType: "none",fontSize: 20, padding: 0 }}>
+                        <ul style={{ listStyleType: "none", fontSize: 20, padding: 0 }}>
                             <li >
                                 <Link style={style.link} to="/account-profile">Profile</Link>
                             </li>
@@ -60,7 +53,7 @@ class Navigation extends Component {
                             </li>
                         </ul>
                     </div>
-                        
+
                     <div style={{ flex: 1, padding: "10px" }}>
                         {routes.map((route, index) => (
                             <Route
@@ -75,7 +68,7 @@ class Navigation extends Component {
             </Router>
         )
     }
-    
+
 }
 
 export default Navigation

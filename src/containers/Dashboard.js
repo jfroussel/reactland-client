@@ -3,9 +3,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userInfo} from '../actions/auth'
 
-
-
-
 const style = {
     container: {
         backgroundColor: '#282c34',

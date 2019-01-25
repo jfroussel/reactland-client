@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { userInfo } from '../../actions/auth'
-import Navigation from './Navigation'
+import { userInfo } from '../actions/auth'
+import Navigation from '../components/account/Navigation'
 const style = {
     container: {
         paddingTop: 150

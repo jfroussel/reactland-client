@@ -6,7 +6,7 @@ class Profile extends Component {
        this.state = {}
    }
    componentWillMount() {
-       console.log('PROPS : ', this.props)
+       //console.log('PROPS : ', this.props)
 
 
    }
