@@ -4,7 +4,6 @@ import { signinUser } from "../../actions/auth"
 import { connect } from "react-redux"
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
-import { Link } from 'react-router-dom'
 import * as validations from '../../validations'
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField'
@@ -55,7 +54,6 @@ class Signin extends Component {
 
     render() {
         const { classes } = this.props;
-
         return (
             <div className="App">
                 <header className="App-header">
@@ -81,12 +79,8 @@ class Signin extends Component {
                                 Se connecter
                             </Button>
                         </div>
-                        <h6 className="font-weight-light">Mot de passe oublié !
-                            <Link to="/reset-password" style={{ textDecoration: "none" }}>
-                                <span>  Reset</span>
-                            </Link>
-                        </h6>
 
+                       
                     </form>
                 </header>
             </div>

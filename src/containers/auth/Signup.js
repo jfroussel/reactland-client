@@ -4,7 +4,6 @@ import { connect } from "react-redux"
 import { bindActionCreators } from 'redux'
 import { signupUser } from "../../actions/auth"
 import { withRouter } from 'react-router'
-import { Link } from 'react-router-dom'
 import * as validations from '../../validations'
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField'

@@ -45,12 +45,11 @@ export function signupUser({ email, password, username, subscribe }, history) {
     }
 }
 
-export function resetPassword({ email, password}, history) {
-    console.log('reset', history)
+export function resetPassword({ email}, history) {
+   
     return function (dispatch) {
         axios.post(`${BASE_URL}/reset-password`, {
-            email,
-            password,
+            email  
         }).then((response) => {
            
             localStorage.setItem("token", response.data.token)
@@ -59,7 +58,7 @@ export function resetPassword({ email, password}, history) {
             history.push("/dashboard")
         })
         .catch((error) => {
-            console.log('signup error',error)
+            console.log('/',error)
         })
     }
 }
@@ -68,7 +67,6 @@ export function signout(history) {
     return function (dispatch) {
         dispatch(setAuthentification(false))
         dispatch(userInfo(null))
-        history.push("/dashboard")
         localStorage.removeItem("token")
     }
 }

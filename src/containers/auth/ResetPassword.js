@@ -28,7 +28,7 @@ const styles = theme => ({
     }
 });
 
-const FIELDS = { email: "email",password: "password", confirmPassword: "confirmPassword" }
+const FIELDS = { email: "email" }
 
 class ResetPassword extends Component {
 
@@ -58,7 +58,7 @@ class ResetPassword extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <h3 className="font-weight-light">Reset your password</h3>
+                    <h3 className="font-weight-light">Change ton mot de passe</h3>
                     <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
                         <Field
                             name={FIELDS.email}
@@ -66,18 +66,7 @@ class ResetPassword extends Component {
                             type="text"
                             label="email"
                         />
-                        <Field
-                            name={FIELDS.password}
-                            component={this.renderInput}
-                            type="password"
-                            label="password"
-                        />
-                        <Field
-                            name={FIELDS.confirmPassword}
-                            component={this.renderInput}
-                            type="password"
-                            label="confirm password"
-                        />
+                       
                         <div className="justify-content-md-center pb-5 pt-5">
                             <Button type="submit" variant="contained" color="primary" className={classes.button}>
                                 Reset password
@@ -93,8 +82,6 @@ class ResetPassword extends Component {
 function validate(formValues) {
     const errors = {}
     errors.email = validations.validateEmail(formValues.email)
-    errors.password = validations.validateNotEmpty(formValues.password)
-    errors.confirmPassword = validations.validateEqualPassword(formValues.password, formValues.confirmPassword)
     return errors
 }
 

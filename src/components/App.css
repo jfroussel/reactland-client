@@ -743,7 +743,7 @@ button:focus{
   }
 
 .price .panel:hover{
-    background-color: #13BDFF;
+    background-color: #12546e;;
     border-top: 50px solid transparent;
     border-bottom: 50px solid transparent;
     margin-top: -50px;
@@ -1044,7 +1044,7 @@ button:focus{
       right: 0;
       top: 0;
       bottom: 0;
-      background-color: #001F37;
+      background-color: #12546e;;
       z-index: -1;
     }
 
