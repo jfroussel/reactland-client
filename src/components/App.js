@@ -1,12 +1,11 @@
 import React from 'react'
 import './App.css'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Home from './Home'
+import HomePage from './homePage'
 import Dashboard from '../containers/Dashboard'
 import Sales from './Sales'
 import Statistics from './Statistics'
 import RequireAuthentification from '../helpers/require-authentification'
-import Navbar from './header'
 import Signin from '../containers/auth/Signin'
 import Signout from '../containers/auth/Signout'
 import Signup from '../containers/auth/Signup'
@@ -25,8 +24,9 @@ const style = {
 const App = () => (
     <Router>
         <div style={style.container}>
-            <Navbar />
-            <Route exact path="/" component={Home} />
+            
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/home-page" component={HomePage} />
             <Route exact path='/signin' component={Signin} />
             <Route exact path='/signout' component={Signout} />
             <Route exact path='/signup' component={Signup} />

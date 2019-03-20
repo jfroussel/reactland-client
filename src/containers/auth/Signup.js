@@ -89,7 +89,7 @@ class Signup extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <h3 className="font-weight-light">Register</h3>
+                    <h3 className="font-weight-light">Pas encore de compte !<br /> Inscris toi</h3>
                     <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
                         <Field
                             name={FIELDS.username}
@@ -106,6 +106,7 @@ class Signup extends Component {
                         <Field
                             name={FIELDS.password}
                             component={this.renderInput}
+                            type="password"
                             label="password"
                         />
                         <Field
@@ -118,15 +119,11 @@ class Signup extends Component {
 
                         <div className="justify-content-md-center pb-5 pt-5">
                             <Button type="submit" variant="contained" color="primary" className={classes.button}>
-                                Register
+                                S'enregistrer
                             </Button>
                         </div>
 
-                        <h6 className="font-weight-light ">You have an account !
-                        <Link to="/signin" style={{ textDecoration: "none" }}>
-                                <span>      login </span>
-                            </Link>
-                        </h6>
+                        
                         <Field
                             name={FIELDS.subscribe}
                             component={this.renderCheckBox}

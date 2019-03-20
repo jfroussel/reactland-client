@@ -59,7 +59,7 @@ class Signin extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <h3 className="font-weight-light">Login</h3>
+                    <h3 className="font-weight-light">Tu as déjà un compte !<br /> Connecte toi</h3>
                     <form
                         className={classes.container} noValidate autoComplete="off" onSubmit={this.props.handleSubmit(this.handleSubmit)}>
 
@@ -78,16 +78,10 @@ class Signin extends Component {
 
                         <div className="justify-content-md-center pb-5 pt-5">
                             <Button type="submit" variant="contained" color="primary" className={classes.button}>
-                                Connexion
+                                Se connecter
                             </Button>
                         </div>
-
-                        <h6 className="font-weight-light">Not register !
-                            <Link to="/signup" style={{ textDecoration: "none" }}>
-                                <span>   create your account now !</span>
-                            </Link>
-                        </h6>
-                        <h6 className="font-weight-light">Forgotten password !
+                        <h6 className="font-weight-light">Mot de passe oublié !
                             <Link to="/reset-password" style={{ textDecoration: "none" }}>
                                 <span>  Reset</span>
                             </Link>
