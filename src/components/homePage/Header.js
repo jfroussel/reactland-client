@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { bindActionCreators } from 'redux'
-import { signout, userInfo } from "../../actions/auth"
+import { signout } from "../../actions/auth"
 import '../App.css'
 import { Icon, Drawer, Tooltip } from 'antd'
 import Logo from '../../assets/logo.png'
 import Signin from '../../containers/auth/Signin'
 import Signup from '../../containers/auth/Signup'
 import Reset from '../../containers/auth/ResetPassword'
-
+import notify from '../utils/notification'
 
 
 class Header extends Component {
@@ -20,14 +20,8 @@ class Header extends Component {
             reset: false,
             signup: false,
             signin: true,
-           
         }
     }
-
-    componentWillReceiveProps() {
-
-    }
-
 
     showDrawer() {
         this.setState({ visible: true })
@@ -40,12 +34,13 @@ class Header extends Component {
     login() {
         return this.setState({ visible: true })
     }
+
     signout() {
         if (this.props.auth.isLoggedIn) {
             this.setState({ visible: false })
-            return this.props.signout()
+            this.props.signout()
+            return  notify("success","deconnexion", "Vous êtes maintenant deconnecté de votre compte reactland ! à bientôt")
         }
-
     }
 
     resetPassword() {
@@ -55,18 +50,14 @@ class Header extends Component {
     signup() {
         return this.setState({ signup: true, reset: false, signin: false })
     }
+
     signin() {
         return this.setState({ signin: true, reset: false, signup: false })
     }
 
-   
-
-
     render() {
-       
-      const info =  this.props.user.info
+        const { info } = this.props.user
 
-        
         return (
             <header className="header header--bg">
                 <div className="container">
@@ -78,7 +69,6 @@ class Header extends Component {
                         </div>
                         <ul className="navbar-nav pull-right">
                             <li className="nav-item active">
-
                                 {
                                     !this.props.auth.isLoggedIn ?
                                         <Tooltip title="Se connecter">
@@ -107,8 +97,8 @@ class Header extends Component {
                             <p className="header__content__paragraph">Bienvenue sur Reactland, cette market place propose de mettre en relation GRATUITEMENT des developpeurs reactJS avec des clients finaux sans intermédiaires, ainsi qu'une base de connaissance autour de l'eco-system ReactJS</p>
                         }
                         {
-                            this.props.auth.isLoggedIn && 
-                            <p className="header__content__paragraph">Bienvenue  </p>
+                            this.props.auth.isLoggedIn &&
+                            <p className="header__content__paragraph">Bienvenue {info ? info.username : null} <br /> Vous êtes connecté avec l'email {info ? info.email : null} </p>
                         }
                         <button className="button button--margin-right button--hover" onClick={() => this.showDrawer()}  >Je suis developpeur reactJS !</button>
                         <button className="button button--hover" onClick={() => this.showDrawer()}>Je recherche un developpeur reactJS</button>

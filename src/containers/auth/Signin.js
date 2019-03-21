@@ -8,6 +8,7 @@ import * as validations from '../../validations'
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button';
+import notify from '../../components/utils/notification'
 
 const styles = theme => ({
     container: {
@@ -32,8 +33,12 @@ const FIELDS = { email: "email", password: "password" }
 class Signin extends Component {
 
     handleSubmit = (credentials) => {
+        console.log('CREDENTIALS', credentials)
         this.props.signinUser(credentials, this.props.history)
+        notify("success","Coonexion à reactland", `Vous êtes maintenant connecté avec l'email ${credentials.email}`)
+       
     }
+
 
     renderInput = (field) => {
         return (
@@ -80,7 +85,7 @@ class Signin extends Component {
                             </Button>
                         </div>
 
-                       
+
                     </form>
                 </header>
             </div>

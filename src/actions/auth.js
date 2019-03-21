@@ -12,7 +12,6 @@ export function signinUser({ email, password }, history) {
             email,
             password
         }).then((response) => {
-            console.log('response XXXXXXXXXXXXXXXX', response.data.token)
             localStorage.setItem("token", response.data.token)
             dispatch(setAuthentification(true))
             dispatch(userInfo(response.data.info))

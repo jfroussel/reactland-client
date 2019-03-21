@@ -10,6 +10,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import notify from '../../components/utils/notification'
 
 
 const styles = theme => ({
@@ -44,6 +45,7 @@ class Signup extends Component {
 
     handleSubmit = (credentials) => {
         this.props.signupUser(credentials, this.props.history)
+        notify("success","Création de ton compte sur reactland", `Ton compte avec l'email ${credentials.email} a bien été créé, à bientôt ${credentials.username}`)
     }
 
     renderInput = (field) => {
