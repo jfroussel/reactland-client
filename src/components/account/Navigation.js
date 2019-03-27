@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import Settings from './Settings'
-import Catalog from './Catalog'
-import Profile from './Profile'
-const style = {
-    link: {
-        color: "#6c757d"
-    }
-}
+import Competences from './Competences'
+import Experiences from './Experiences'
+import Messages from './Messages'
+import { Menu, Icon } from 'antd';
+
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 
 class Navigation extends Component {
 
@@ -15,20 +15,25 @@ class Navigation extends Component {
         const { info } = this.props
         const routes = [
             {
-                path: "/account-profile",
+                path: "/settings",
                 exact: true,
-                sidebar: () => <div>profile</div>,
-                main: () => <Profile info={info} />
+                sidebar: () => <div>Parametres du profil</div>,
+                main: () => <Settings info={info} />
             },
             {
-                path: "/account-catalog",
-                sidebar: () => <div>catalogue</div>,
-                main: () => <Catalog />
+                path: "/competences",
+                sidebar: () => <div>competences</div>,
+                main: () => <Competences info={info} />
             },
             {
-                path: "/account-settings",
-                sidebar: () => <div>settings</div>,
-                main: () => <Settings />
+                path: "/experiences",
+                sidebar: () => <div>experiences</div>,
+                main: () => <Experiences info={info} />
+            },
+            {
+                path: "/messages",
+                sidebar: () => <div>messages</div>,
+                main: () => <Messages info={info} />
             }
         ]
         return (
@@ -37,24 +42,47 @@ class Navigation extends Component {
                     <div
                         style={{
                             padding: "10px",
-                            width: "25%",
-                            background: "#f0f0f0"
+                            width: "15%",
+                            background: "none"
                         }}
                     >
-                        <ul style={{ listStyleType: "none", fontSize: 20, padding: 0 }}>
-                            <li >
-                                <Link style={style.link} to="/account-profile">Profile</Link>
-                            </li>
-                            <li>
-                                <Link style={style.link} to="/account-catalog">Catalog</Link>
-                            </li>
-                            <li>
-                                <Link style={style.link} to="/account-settings">Settings</Link>
-                            </li>
-                        </ul>
+                        <Menu
+                            onClick={this.handleClick}
+                            style={{ width: 'auto' }}
+                            defaultSelectedKeys={['1']}
+                            defaultOpenKeys={['sub1']}
+                            mode="inline"
+                        >
+                            <Menu.Item key="settings">
+                                <Link to="/settings">
+                                    <Icon type="setting" />
+                                    <span>Paramétres du compte</span>
+                                </Link>
+                            </Menu.Item>
+                            <Menu.Item key="competences">
+                                <Link to="/competences">
+                                    <Icon type="profile" />
+                                    <span>Competences</span>
+                                </Link>
+                            </Menu.Item>
+                            <Menu.Item key="experiences">
+                                <Link to="/experiences">
+                                    <Icon type="project" />
+                                    <span>Experiences</span>
+                                </Link>
+                            </Menu.Item>
+
+                            <SubMenu key="messages" title={<span><Link to="/messages"><Icon type="message" /><span>Vos Messages</span></Link></span>}>
+                                <MenuItemGroup key="detail">
+                                    <Menu.Item key="inbox">Boite de reception</Menu.Item>
+                                    <Menu.Item key="send">Messages envoyés</Menu.Item>
+                                </MenuItemGroup>
+                            </SubMenu>
+
+                        </Menu>
                     </div>
 
-                    <div style={{ flex: 1, padding: "10px" }}>
+                    <div style={{ flex: 1, padding: "5px" }}>
                         {routes.map((route, index) => (
                             <Route
                                 key={index}

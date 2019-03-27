@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { bindActionCreators } from 'redux'
+import { Link } from 'react-router-dom'
 import { signout } from "../../actions/auth"
-import '../App.css'
-import { Icon, Drawer, Tooltip } from 'antd'
+import '../../components/App.css'
+import { Icon, Drawer, Tooltip, Avatar, Menu, Dropdown } from 'antd'
 import Logo from '../../assets/logo.png'
 import Signin from '../../containers/auth/Signin'
 import Signup from '../../containers/auth/Signup'
 import Reset from '../../containers/auth/ResetPassword'
-import notify from '../utils/notification'
-
+import notify from '../../components/utils/notification'
+import UserTools from '../../components/user/userTools'
+import UserImg from '../../assets/jeff.jpg'
 
 class Header extends Component {
 
@@ -20,12 +22,11 @@ class Header extends Component {
             reset: false,
             signup: false,
             signin: true,
+            title: "reactJS Market Place"
         }
     }
 
-    showDrawer() {
-        this.setState({ visible: true })
-    }
+   
 
     onClose() {
         this.setState({ visible: false })
@@ -39,7 +40,7 @@ class Header extends Component {
         if (this.props.auth.isLoggedIn) {
             this.setState({ visible: false })
             this.props.signout()
-            return  notify("success","deconnexion", "Vous êtes maintenant deconnecté de votre compte reactland ! à bientôt")
+            return notify("success", "deconnexion", "Vous êtes maintenant deconnecté de votre compte reactland ! à bientôt", "bottomRight")
         }
     }
 
@@ -58,14 +59,30 @@ class Header extends Component {
     render() {
         const { info } = this.props.user
 
+        const menu = (
+            <Menu>
+                <Menu.Item>
+                    <Link to={"/account"}>
+                        <Icon type="setting" theme="filled" style={{ verticalAlign: 0 }} /> Paramétres de Compte
+                    </Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Icon type="message" theme="filled" style={{ verticalAlign: 0 }} /> Vos Messages
+                </Menu.Item>
+                <Menu.Item onClick={() => this.signout()}>
+                    Se deconnecter
+                </Menu.Item>
+            </Menu>
+        );
+
         return (
             <header className="header header--bg">
                 <div className="container">
                     <nav className="navbar">
                         <div className="navbar-header">
-                            <a className="navbar-brand" href="#home" >
+                            <Link className="navbar-brand" to="/" >
                                 <img src={Logo} alt="reactland" />
-                            </a>
+                            </Link>
                         </div>
                         <ul className="navbar-nav pull-right">
                             <li className="nav-item active">
@@ -73,35 +90,49 @@ class Header extends Component {
                                     !this.props.auth.isLoggedIn ?
                                         <Tooltip title="Se connecter">
                                             <Icon
-                                                type="login"
+                                                type="user"
                                                 style={{ fontSize: 25, color: "#fff", cursor: "pointer" }}
                                                 onClick={() => this.login()}
                                             />
                                         </Tooltip>
                                         :
-                                        <Tooltip title="Se déconnecter">
-                                            <Icon
-                                                type="logout"
-                                                style={{ fontSize: 25, color: "#fff", cursor: "pointer" }}
-                                                onClick={() => this.signout()}
-                                            />
-                                        </Tooltip>
+                                        <div>
+                                            <Dropdown overlay={menu} placement="bottomRight">
+                                                <Avatar
+                                                    src={UserImg}
+                                                    size="large"
+                                                    style={{ cursor: "pointer" }}
+                                                >
+                                                </Avatar>
+                                            </Dropdown>
+                                        </div>
+
+
                                 }
                             </li>
                         </ul>
                     </nav>
                     <div className="header__content text-center">
-                        <h1 className="header__content__title">reactJS Market Place</h1>
+
                         {
                             !this.props.auth.isLoggedIn &&
-                            <p className="header__content__paragraph">Bienvenue sur Reactland, cette market place propose de mettre en relation GRATUITEMENT des developpeurs reactJS avec des clients finaux sans intermédiaires, ainsi qu'une base de connaissance autour de l'eco-system ReactJS</p>
+                            <div>
+                                <h1 className="header__content__title">Reactland Marketplace</h1>
+                                <p className="header__content__paragraph">Bienvenue sur Reactland, cette market place propose de mettre en relation GRATUITEMENT des developpeurs reactJS avec des clients finaux sans intermédiaires, ainsi qu'une base de connaissance autour de l'eco-system ReactJS</p>
+                                <button className="button button--margin-right button--hover" >Je suis developpeur reactJS !</button>
+                                <button className="button button--hover" >Je recherche un developpeur reactJS</button>
+                            </div>
                         }
+
                         {
                             this.props.auth.isLoggedIn &&
-                            <p className="header__content__paragraph">Bienvenue {info ? info.username : null} <br /> Vous êtes connecté avec l'email {info ? info.email : null} </p>
+                            <div>
+                                <h1 className="header__content__title">Bienvenue {info ? info.username : null}</h1>
+                                <p className="header__content__paragraph"><em>Tu es connecté avec l'email {info ? info.email : null}</em></p>
+                                <UserTools />
+                            </div>
                         }
-                        <button className="button button--margin-right button--hover" onClick={() => this.showDrawer()}  >Je suis developpeur reactJS !</button>
-                        <button className="button button--hover" onClick={() => this.showDrawer()}>Je recherche un developpeur reactJS</button>
+
                     </div>
                 </div>
                 {

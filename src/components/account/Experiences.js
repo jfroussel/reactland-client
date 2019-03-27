@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import { userInfo } from '../../actions/auth'
 
 
-class Settings extends Component {
+class Experiences extends Component {
     constructor(props) {
         super(props)
         this.state = {}
@@ -22,13 +22,11 @@ class Settings extends Component {
         return (
             <div>
                 <Card
-                    title="PARAMETRES DU COMPTE"
+                    title="EXPERIENCES"
                     extra={<a href="#">More</a>}
                     style={{ width: 'auto' }}
                 >
-                    <p>Username : {info.username}</p>
-                    <p>Email : {info.email}</p>
-                    <p>Id : {info._id}</p>
+                   
                 </Card>
             </div>
         );
@@ -48,5 +46,5 @@ const mapStateToProps = state => ({
   }
   
   
-  export default connect(mapStateToProps, mapDispatchToProps)(Settings)
+  export default connect(mapStateToProps, mapDispatchToProps)(Experiences)
 

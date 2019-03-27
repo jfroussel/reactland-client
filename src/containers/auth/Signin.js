@@ -35,7 +35,7 @@ class Signin extends Component {
     handleSubmit = (credentials) => {
         console.log('CREDENTIALS', credentials)
         this.props.signinUser(credentials, this.props.history)
-        notify("success","Coonexion à reactland", `Vous êtes maintenant connecté avec l'email ${credentials.email}`)
+        notify("success","Coonexion à reactland", `Vous êtes maintenant connecté avec l'email ${credentials.email}`, "bottomRight")
        
     }
 
