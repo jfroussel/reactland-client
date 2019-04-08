@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { userInfo } from '../../actions/auth'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import Settings from './Settings'
 import Competences from './Competences'
@@ -12,28 +15,25 @@ const MenuItemGroup = Menu.ItemGroup;
 class Navigation extends Component {
 
     render() {
+        console.log('this props ', this.props)
         const { info } = this.props
         const routes = [
             {
                 path: "/settings",
                 exact: true,
-                sidebar: () => <div>Parametres du profil</div>,
-                main: () => <Settings info={info} />
+                main: () => <Settings userInfo={info} />
             },
             {
                 path: "/competences",
-                sidebar: () => <div>competences</div>,
-                main: () => <Competences info={info} />
+                main: () => <Competences userInfo={info} />
             },
             {
                 path: "/experiences",
-                sidebar: () => <div>experiences</div>,
-                main: () => <Experiences info={info} />
+                main: () => <Experiences userInfo={info} />
             },
             {
                 path: "/messages",
-                sidebar: () => <div>messages</div>,
-                main: () => <Messages info={info} />
+                main: () => <Messages userInfo={info}  />
             }
         ]
         return (
@@ -42,7 +42,7 @@ class Navigation extends Component {
                     <div
                         style={{
                             padding: "10px",
-                            width: "15%",
+                            width: "auto",
                             background: "none"
                         }}
                     >
@@ -99,4 +99,15 @@ class Navigation extends Component {
 
 }
 
-export default Navigation
+const mapStateToProps = state => ({
+    isLoggedIn: state.authentification.isLoggedIn,
+    info: state.userInfo.info
+})
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ userInfo }, dispatch)
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation)
+

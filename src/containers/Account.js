@@ -4,12 +4,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userInfo } from '../actions/auth'
 import Navigation from '../components/account/Navigation'
-import Logo from '../assets/logo.png'
+
 
 const style = {
-    nav: {
-        backgroundColor: '#343a40'
-    },
     container: {
         padding: 0
     }
@@ -27,7 +24,7 @@ class Account extends Component {
                 <nav className="navbar" style={style.nav}>
                     <div className="navbar-header">
                         <Link className="navbar-brand" to="/" >
-                            <img src={Logo} alt="reactland" />
+                            <h3>Reactland</h3>
                         </Link>
                     </div>
                 </nav>

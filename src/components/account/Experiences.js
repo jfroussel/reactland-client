@@ -1,50 +1,15 @@
-import React, { Component } from 'react'
-import { Card } from 'antd'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { userInfo } from '../../actions/auth'
-
+import React, { Component } from 'react';
 
 class Experiences extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {}
-    }
-    componentWillMount() {
-        //console.log('PROPS : ', this.props)
-
-
-    }
-
     render() {
-        const { info } = this.props
-        console.log('info', this.props)
+        const user = this.props.userInfo
         return (
             <div>
-                <Card
-                    title="EXPERIENCES"
-                    extra={<a href="#">More</a>}
-                    style={{ width: 'auto' }}
-                >
-                   
-                </Card>
+                <h3>Experiences</h3>
+                <p>ID : {user._id}</p>
             </div>
         );
     }
 }
 
-const mapStateToProps = state => ({
-
-    isLoggedIn: state.authentification.isLoggedIn,
-    info: state.userInfo.info
-  
-  
-  })
-  
-  const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ userInfo }, dispatch)
-  }
-  
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(Experiences)
-
+export default Experiences;

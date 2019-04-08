@@ -5,12 +5,10 @@ import { Link } from 'react-router-dom'
 import { signout } from "../../actions/auth"
 import '../../components/App.css'
 import { Icon, Drawer, Tooltip, Avatar, Menu, Dropdown } from 'antd'
-import Logo from '../../assets/logo.png'
 import Signin from '../../containers/auth/Signin'
 import Signup from '../../containers/auth/Signup'
 import Reset from '../../containers/auth/ResetPassword'
 import notify from '../../components/utils/notification'
-import UserTools from '../../components/user/userTools'
 import UserImg from '../../assets/jeff.jpg'
 
 class Header extends Component {
@@ -26,7 +24,7 @@ class Header extends Component {
         }
     }
 
-   
+
 
     onClose() {
         this.setState({ visible: false })
@@ -57,7 +55,6 @@ class Header extends Component {
     }
 
     render() {
-        const { info } = this.props.user
 
         const menu = (
             <Menu>
@@ -67,7 +64,9 @@ class Header extends Component {
                     </Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <Icon type="message" theme="filled" style={{ verticalAlign: 0 }} /> Vos Messages
+                    <Link to="/messages">
+                        <Icon type="message" theme="filled" style={{ verticalAlign: 0 }} /> Vos Messages
+                    </Link>
                 </Menu.Item>
                 <Menu.Item onClick={() => this.signout()}>
                     Se deconnecter
@@ -76,22 +75,39 @@ class Header extends Component {
         );
 
         return (
-            <header className="header header--bg">
+            <div>
                 <div className="container">
-                    <nav className="navbar">
+                    <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
                         <div className="navbar-header">
                             <Link className="navbar-brand" to="/" >
-                                <img src={Logo} alt="reactland" />
+                                REACTLAND
                             </Link>
                         </div>
-                        <ul className="navbar-nav pull-right">
-                            <li className="nav-item active">
+                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse" id="navbarsDefault">
+                            <ul className="navbar-nav mr-auto">
+                                <li className="nav-item active">
+                                    <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/">Link</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link disabled" to="/" tabIndex="-1" aria-disabled="true">Disabled</Link>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <ul className="navbar-nav pull-right mr-auto">
+                            <li className="nav-item active ">
                                 {
                                     !this.props.auth.isLoggedIn ?
-                                        <Tooltip title="Se connecter">
+                                        <Tooltip title="Se connecter" placement="bottom">
                                             <Icon
                                                 type="user"
-                                                style={{ fontSize: 25, color: "#fff", cursor: "pointer" }}
+                                                style={{ fontSize: 25, color: "#c7c7c7", cursor: "pointer" }}
                                                 onClick={() => this.login()}
                                             />
                                         </Tooltip>
@@ -112,34 +128,13 @@ class Header extends Component {
                             </li>
                         </ul>
                     </nav>
-                    <div className="header__content text-center">
 
-                        {
-                            !this.props.auth.isLoggedIn &&
-                            <div>
-                                <h1 className="header__content__title">Reactland Marketplace</h1>
-                                <p className="header__content__paragraph">Bienvenue sur Reactland, cette market place propose de mettre en relation GRATUITEMENT des developpeurs reactJS avec des clients finaux sans intermédiaires, ainsi qu'une base de connaissance autour de l'eco-system ReactJS</p>
-                                <button className="button button--margin-right button--hover" >Je suis developpeur reactJS !</button>
-                                <button className="button button--hover" >Je recherche un developpeur reactJS</button>
-                            </div>
-                        }
-
-                        {
-                            this.props.auth.isLoggedIn &&
-                            <div>
-                                <h1 className="header__content__title">Bienvenue {info ? info.username : null}</h1>
-                                <p className="header__content__paragraph"><em>Tu es connecté avec l'email {info ? info.email : null}</em></p>
-                                <UserTools />
-                            </div>
-                        }
-
-                    </div>
                 </div>
                 {
                     !this.props.auth.isLoggedIn && <Drawer
                         title="Authentification Reactland !"
                         placement="right"
-                        width={720}
+                        width="auto"
                         closable={true}
                         onClose={() => this.onClose()}
                         visible={this.state.visible}
@@ -180,7 +175,7 @@ class Header extends Component {
 
                     </Drawer>
                 }
-            </header>
+            </div>
         )
     }
 }
